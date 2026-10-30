@@ -6,24 +6,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600;700&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  @font-face {
+@font-face {
   font-family: 'Dragon Serial';
-  src: url('Dragon-Serial-Light.ttf') format('tff');
+  src: url('Dragon-Serial-Light.ttf') format('truetype');
   font-weight: 300; /* Light */
 }
 @font-face {
   font-family: 'Dragon Serial';
-  src: url('Dragon-Serial-Bold.ttf') format('ttf');
+  src: url('Dragon-Serial-Bold.ttf') format('truetype');
   font-weight: 700; /* Bold */
 }
 @font-face {
   font-family: 'Dragon Serial';
-  src: url('Dragon-Serial-ExtraBold.ttf') format('tff');
+  src: url('Dragon-Serial-ExtraBold.ttf') format('truetype');
   font-weight: 800; /* ExtraBold */
 }
+
+:root{
   /* ---- Your image files: change these paths if yours are named differently ---- */
   --bg-light-img:url("dashboard-background-light.png");
   --bg-dark-img:url("dashboard-background-dark.png");
@@ -71,7 +72,7 @@ main{position:relative;z-index:1;padding:4vw 24px 64px}
 .stage{container-type:inline-size;width:clamp(320px,70vw,1100px);margin:0 auto}
 
 .top{display:flex;justify-content:space-between;align-items:center;height:8.8cqw;padding:0 4.1cqw 0 4.2cqw}
-.name{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:2cqw;letter-spacing:.04em;text-transform:uppercase;color:var(--name);transition:color .6s}
+.name{margin:0;font-family:"Dragon Serial",Georgia,serif;font-weight:700;font-size:2cqw;letter-spacing:.04em;text-transform:uppercase;color:var(--name);transition:color .6s}
 .about-link{font-size:1.4cqw;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--name);text-decoration:none;transition:color .6s}
 .about-link:hover{text-decoration:underline;text-underline-offset:4px}
 
@@ -84,7 +85,7 @@ main{position:relative;z-index:1;padding:4vw 24px 64px}
 
 /* Headline: one flowing sentence, bottom-aligned, bold / light / bold like Figma */
 .hero{background:var(--c1);color:var(--c1t);display:flex;align-items:flex-end;padding:1.6cqw 1.6cqw 1.9cqw}
-.hero h1{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:3.9cqw;line-height:1.08}
+.hero h1{margin:0;font-family:"Dragon Serial",Georgia,serif;font-weight:700;font-size:3.9cqw;line-height:1.08}
 .hero .l{font-weight:300}
 .hero .nb{white-space:nowrap}
 
@@ -100,12 +101,12 @@ main{position:relative;z-index:1;padding:4vw 24px 64px}
 .contact{position:relative;background:var(--c4);color:var(--c4t);padding:1.8cqw;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none}
 .contact .q{font-weight:800;font-size:1.35cqw;line-height:1.25;max-width:12em}
 .contact svg{position:absolute;top:2.3cqw;right:2.3cqw;width:1.8cqw;height:1.8cqw}
-.contact .cta{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:4.6cqw;line-height:1}
+.contact .cta{font-family:"Dragon Serial",Georgia,serif;font-weight:700;font-size:4.6cqw;line-height:1}
 .contact:hover .cta,.contact:focus-visible .cta{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
 
 /* Projects: list is narrower than the card (more space on the right), rows ~51px like Figma */
 .projects{background:var(--c2);color:var(--c2t);padding:2.1cqw 1.8cqw}
-.projects h2{margin:0 0 2.6cqw;font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:4.8cqw;line-height:1}
+.projects h2{margin:0 0 2.6cqw;font-family:"Dragon Serial",Georgia,serif;font-weight:700;font-size:4.8cqw;line-height:1}
 .projects ul{list-style:none;margin:0;padding:0;width:78%;border-top:2px solid var(--c2r);transition:border-color .6s}
 .projects li{border-bottom:2px solid var(--c2r);transition:border-color .6s}
 .projects a{display:flex;align-items:center;height:5.29cqw;color:inherit;text-decoration:none;font-weight:500;font-size:1.88cqw;transition:padding .25s}
