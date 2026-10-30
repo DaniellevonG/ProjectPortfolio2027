@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>Danielle von Graszouw – Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600;700&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page:#f1eee8; --name:#5e2b35; --line:#5e2b35;
+  --c1:#835b88; --c1t:#f3b7f3;
+  --photo:#d3b184;
+  --c2:#5e2b35; --c2t:#f7c566; --c2r:#c9965b;
+  --c3:#efbe5f; --c3t:#5e2b35;
+  --c4:#eb8848; --c4t:#9a3410;
+  --knob:#f6f2ea;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+:root[data-theme="dark"]{
+  --page:#1e1f23; --name:#cfcb8f; --line:#cfcb8f;
+  --c1:#9792be; --c1t:#26242b;
+  --photo:#86989f;
+  --c2:#3d3f6e; --c2t:#bfd3e0; --c2r:#7f8cb5;
+  --c3:#7a6180; --c3t:#eadfec;
+  --c4:#4a6877; --c4t:#c3d3db;
+  --knob:#1e1f23;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%}
+body{margin:0;min-height:100%;background:var(--page);color:var(--name);font-family:"Raleway",system-ui,sans-serif;transition:background-color .6s}
+.serif{font-family:"Cormorant Garamond",Georgia,serif}
+
+/* Backgrounds (cross-fade between light and dark) */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;transition:opacity .8s ease}
+.bg-light{background:
+  linear-gradient(115deg,transparent 30%,rgba(255,236,150,.9) 36%,rgba(255,236,150,0) 40%) ,
+  radial-gradient(ellipse 60% 50% at 15% 20%,rgba(255,244,190,.8),transparent 70%),
+  radial-gradient(ellipse 50% 40% at 50% 100%,rgba(255,250,200,.7),transparent 70%),
+  #f1eee8}
+.bg-dark{opacity:0;background:
+  radial-gradient(ellipse 35% 30% at 50% 28%,rgba(140,70,200,.55),transparent 70%),
+  radial-gradient(ellipse 30% 25% at 62% 62%,rgba(210,80,160,.4),transparent 70%),
+  radial-gradient(ellipse 40% 30% at 20% 40%,rgba(70,50,160,.35),transparent 70%),
+  radial-gradient(1.5px 1.5px at 12% 22%,#fff8,transparent),radial-gradient(1px 1px at 28% 70%,#fff9,transparent),
+  radial-gradient(1.5px 1.5px at 44% 12%,#fffa,transparent),radial-gradient(1px 1px at 58% 82%,#fff8,transparent),
+  radial-gradient(2px 2px at 73% 30%,#fffb,transparent),radial-gradient(1px 1px at 86% 58%,#fff9,transparent),
+  radial-gradient(1.5px 1.5px at 92% 16%,#fff8,transparent),radial-gradient(1px 1px at 6% 80%,#fff8,transparent),
+  radial-gradient(1px 1px at 36% 44%,#fff7,transparent),radial-gradient(1.5px 1.5px at 66% 8%,#fff8,transparent),
+  #1e1f23}
+[data-theme="dark"] .bg-dark{opacity:1}
+[data-theme="dark"] .bg-light{opacity:0}
+
+/* Layout */
+main{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:clamp(24px,6vw,64px) clamp(20px,6vw,64px) 64px}
+.name{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:clamp(20px,2.4vw,26px);letter-spacing:.04em;text-transform:uppercase;margin:0 0 36px 64px;color:var(--name);transition:color .6s}
+.grid{display:grid;grid-template-columns:322fr 347fr 315fr;grid-template-rows:324px 324px;gap:22px}
+.card{border-radius:18px;transition:background-color .6s,color .6s;overflow:hidden}
+.hero{grid-area:1/1;background:var(--c1);color:var(--c1t);padding:36px 22px}
+.hero h1{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:clamp(30px,3.4vw,40px);line-height:1.08}
+.hero h1 span{font-weight:300}
+.photo{grid-area:1/2;position:relative;background:var(--photo);transition:background-color .6s}
+.photo svg,.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+.photo img{opacity:0;transition:opacity .6s}
+[data-theme="light"] .photo .p-light,[data-theme="dark"] .photo .p-dark{opacity:1}
+.about{grid-area:2/1;background:var(--c3);color:var(--c3t);padding:30px 22px;font-size:13.5px;line-height:1.7;font-weight:500}
+.about p{margin:0 0 20px}.about p:last-child{margin:0}
+.contact{grid-area:2/2;background:var(--c4);color:var(--c4t);padding:26px 22px 22px;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none}
+.contact .q{font-weight:700;font-size:15px;line-height:1.25;max-width:9em}
+.contact svg{position:absolute;top:26px;right:26px;width:22px;height:22px}
+.contact{position:relative}
+.contact .cta{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:clamp(34px,4vw,48px);line-height:1}
+.contact:hover .cta,.contact:focus-visible .cta{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
+.projects{grid-area:1/3/3/3;background:var(--c2);color:var(--c2t);padding:30px 22px}
+.projects h2{margin:0 0 26px;font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:clamp(36px,4vw,46px);line-height:1}
+.projects ul{list-style:none;margin:0;padding:0;border-top:2px solid var(--c2r)}
+.projects li{border-bottom:2px solid var(--c2r);transition:border-color .6s}
+.projects ul{transition:border-color .6s}
+.projects a{display:block;padding:15px 0;color:inherit;text-decoration:none;font-weight:500;font-size:19px;transition:padding .25s}
+.projects a:hover,.projects a:focus-visible{padding-left:10px}
+a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset:3px}
+
+/* Language pill */
+.lang{position:fixed;z-index:3;top:36px;right:-28px;width:92px;height:62px;border:2px solid var(--line);border-radius:31px;background:transparent;color:var(--line);display:flex;align-items:center;padding-left:14px;cursor:pointer;transition:color .6s,border-color .6s}
+.lang svg{width:32px;height:32px}
+
+/* Day/night slider */
+.slider{position:fixed;z-index:3;left:0;top:50%;transform:translateY(-50%);height:min(46vh,420px);width:auto;aspect-ratio:90/400;touch-action:none;color:var(--line);transition:color .6s}
+.slider path{fill:none;stroke:currentColor;stroke-width:2}
+.knob{cursor:grab;outline:none}
+.knob circle{fill:var(--knob);stroke:currentColor;stroke-width:2;transition:fill .6s}
+.knob:focus-visible circle{stroke-width:4}
+.knob .ico{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+.knob .moon{fill:currentColor;stroke:none}
+[data-theme="light"] .moon,[data-theme="dark"] .sun{display:none}
+.hit{fill:transparent;cursor:pointer}
+
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .hero{grid-area:auto;grid-column:1/3}.photo{grid-area:auto;grid-column:1/3;height:360px}
+  .about{grid-area:auto;grid-column:1/3}.contact{grid-area:auto;grid-column:1/3;min-height:200px}
+  .projects{grid-area:auto;grid-column:1/3}
+  .name{margin-left:40px}
+  .slider{height:260px}
+  .lang{top:16px;transform:scale(.75);transform-origin:right top}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bg bg-light"></div><div class="bg bg-dark"></div>
+
+<button class="lang" aria-label="Change language"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><circle cx="16" cy="16" r="13"/><ellipse cx="16" cy="16" rx="6" ry="13"/><path d="M3 16h26M5 9h22M5 23h22M16 3v26"/></svg></button>
+
+<!-- Day / night slider: click or drag the knob along the curve -->
+<svg class="slider" viewBox="0 0 90 400" role="group" aria-label="Colour theme">
+  <path id="track" d="M0,4 C92,40 92,360 0,396"/>
+  <path class="hit" d="M0,4 C92,40 92,360 0,396" style="stroke:transparent;stroke-width:34;fill:none;cursor:pointer" id="hit"/>
+  <g class="knob" id="knob" tabindex="0" role="switch" aria-checked="false" aria-label="Dark mode">
+    <circle r="15"/>
+    <g class="sun"><circle class="ico" r="4"/><path class="ico" d="M0-8v-3M0 8v3M-8 0h-3M8 0h3M-5.7-5.7l-2-2M5.7 5.7l2 2M-5.7 5.7l-2 2M5.7-5.7l2-2"/></g>
+    <path class="moon" d="M4-8A8.5 8.5 0 1 0 8 4 7 7 0 0 1 4-8z"/>
+  </g>
+</svg>
+
+<main>
+  <h1 class="name">Danielle von Graszouw</h1>
+  <div class="grid">
+    <section class="card hero"><h1><strong>Multidisciplinary Creative</strong> <span>redefining software</span> with Purpose-Driven Design</h1></section>
+
+    <figure class="card photo" style="margin:0">
+      <!-- Placeholder silhouette; replace the two image paths below with your photos -->
+      <svg viewBox="0 0 347 324" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><circle cx="173" cy="130" r="62" fill="#3a2a28" opacity=".55"/><path d="M60 324c6-70 50-100 113-100s107 30 113 100z" fill="#3a2a28" opacity=".45"/></svg>
+      <img class="p-light" src="images/danielle-light.jpg" alt="Portrait of Danielle von Graszouw" onerror="this.remove()">
+      <img class="p-dark" src="images/danielle-dark.jpg" alt="" onerror="this.remove()">
+    </figure>
+
+    <section class="card about">
+      <p>Hello, I’m Danielle, a passionate and versatile designer with a background in software design and a love for creating experiences that are both meaningful and impactful.</p>
+      <p>With roots in illustration, storytelling, and research, I thrive in a space where creativity meets empathy. My work spans everything from visual design and branding to user research and strategy. All with a common goal: to help people connect, navigate, and feel through design.</p>
+    </section>
+
+    <a class="card contact" href="mailto:hello@example.com">
+      <span class="q">Have some questions?</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 19L19 5M8 5h11v11"/></svg>
+      <span class="cta">Contact me</span>
+    </a>
+
+    <nav class="card projects" aria-label="Projects">
+      <h2>Projects</h2>
+      <ul>
+        <li><a href="#nedbank">Nedbank</a></li>
+        <li><a href="#cherry-assure">Cherry Assure</a></li>
+        <li><a href="#smartboxx">SmartBoxx</a></li>
+        <li><a href="#retro-rabbit">Retro Rabbit Website</a></li>
+        <li><a href="#iwyze">iWyze</a></li>
+        <li><a href="#quest-guide">Quest Guide</a></li>
+      </ul>
+    </nav>
+  </div>
+</main>
+
+<script>
+(function(){
+  var root=document.documentElement, track=document.getElementById('track'),
+      knob=document.getElementById('knob'), hit=document.getElementById('hit'),
+      svg=document.querySelector('.slider'), L=track.getTotalLength(),
+      POS={light:.27,dark:.73}, t=POS.light, raf=null;
+
+  function place(v){t=v;var p=track.getPointAtLength(v*L);knob.setAttribute('transform','translate('+p.x+','+p.y+')');}
+  function animate(to){
+    cancelAnimationFrame(raf);
+    var from=t,start=null,dur=550;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){place(to);return;}
+    (function step(ts){
+      if(!start)start=ts;
+      var k=Math.min((ts-start)/dur,1),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      place(from+(to-from)*e);
+      if(k<1)raf=requestAnimationFrame(step);
+    })(performance.now());
+  }
+  function setTheme(mode,silent){
+    root.setAttribute('data-theme',mode);
+    knob.setAttribute('aria-checked',mode==='dark');
+    animate(POS[mode]);
+    if(!silent){try{localStorage.setItem('theme',mode)}catch(e){}}
+  }
+  function toggle(){setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark')}
+
+  // Initial theme: saved choice, else system preference
+  var saved=null;try{saved=localStorage.getItem('theme')}catch(e){}
+  var init=saved||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  root.setAttribute('data-theme',init);knob.setAttribute('aria-checked',init==='dark');place(POS[init]);
+
+  // Click on the track or knob
+  var dragging=false,moved=false;
+  function tFromPointer(e){
+    var r=svg.getBoundingClientRect(),y=(e.clientY-r.top)/r.height*400,best=t,bd=1e9;
+    for(var i=0;i<=60;i++){var v=i/60,p=track.getPointAtLength(v*L),d=Math.abs(p.y-y);if(d<bd){bd=d;best=v}}
+    return Math.max(.1,Math.min(.9,best));
+  }
+  knob.addEventListener('pointerdown',function(e){dragging=true;moved=false;knob.setPointerCapture(e.pointerId);cancelAnimationFrame(raf);knob.style.cursor='grabbing'});
+  knob.addEventListener('pointermove',function(e){if(!dragging)return;moved=true;var v=tFromPointer(e);place(v);root.setAttribute('data-theme',v>.5?'dark':'light')});
+  knob.addEventListener('pointerup',function(e){
+    dragging=false;knob.style.cursor='';
+    if(moved){setTheme(t>.5?'dark':'light')}else{toggle()}
+  });
+  hit.addEventListener('click',toggle);
+  knob.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
+})();
+</script>
+</body>
+</html>
