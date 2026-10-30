@@ -55,14 +55,14 @@ body{margin:0;min-height:100%;background:var(--page);color:var(--name);font-fami
 
 /* Layout */
 main{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:clamp(24px,6vw,64px) clamp(20px,6vw,64px) 64px}
-.name{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:clamp(20px,2.4vw,26px);letter-spacing:.04em;text-transform:uppercase;margin:0 0 36px 64px;color:var(--name);transition:color .6s}
+.name{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:clamp(20px,2.4vw,26px);letter-spacing:.04em;text-transform:uppercase;margin:0 0 36px 0;color:var(--name);transition:color .6s}
 .grid{display:grid;grid-template-columns:322fr 347fr 315fr;grid-template-rows:324px 324px;gap:22px}
 .card{border-radius:18px;transition:background-color .6s,color .6s;overflow:hidden}
 .hero{grid-area:1/1;background:var(--c1);color:var(--c1t);padding:36px 22px}
 .hero h1{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:clamp(30px,3.4vw,40px);line-height:1.08}
-.hero h1 span{font-weight:300}
+.hero h1 span{font-family:"Raleway",system-ui,sans-serif;font-weight:500;font-size:0.55em;display:block;margin:10px 0;}
 .photo{grid-area:1/2;position:relative;background:var(--photo);transition:background-color .6s}
-.photo svg,.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+.photo svg,.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:bottom center;padding-top:20px;}
 .photo img{opacity:0;transition:opacity .6s}
 [data-theme="light"] .photo .p-light,[data-theme="dark"] .photo .p-dark{opacity:1}
 .about{grid-area:2/1;background:var(--c3);color:var(--c3t);padding:30px 22px;font-size:13.5px;line-height:1.7;font-weight:500}
@@ -78,7 +78,7 @@ main{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:clamp(24
 .projects ul{list-style:none;margin:0;padding:0;border-top:2px solid var(--c2r)}
 .projects li{border-bottom:2px solid var(--c2r);transition:border-color .6s}
 .projects ul{transition:border-color .6s}
-.projects a{display:block;padding:15px 0;color:inherit;text-decoration:none;font-weight:500;font-size:19px;transition:padding .25s}
+.projects a{display:block;padding:12px 0;color:inherit;text-decoration:none;font-weight:500;font-size:14px;transition:padding .25s}
 .projects a:hover,.projects a:focus-visible{padding-left:10px}
 a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset:3px}
 
