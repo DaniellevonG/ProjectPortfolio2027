@@ -10,8 +10,8 @@
 <style>
 :root{
   /* ---- Your image files: change these paths if yours are named differently ---- */
-  --bg-light-img:url("my-portfolio-bg-light.png");
-  --bg-dark-img:url("my-portfolio-bg-dark.png");
+  --bg-light-img:url("dashboard-background-light.png");
+  --bg-dark-img:url("dashboard-background-light.png");
 
   --page:#f1eee8; --name:#5e2b35; --line:#5e2b35;
   --c1:#835b88; --c1t:#f3b7f3;
@@ -75,7 +75,7 @@ main{position:relative;z-index:1;padding:4vw 24px 64px}
 
 /* Portrait: fills the card, anchored to the bottom */
 .photo{position:relative;margin:0;background:var(--photo)}
-.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;opacity:0;transition:opacity .6s}
+.photo svg,.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;padding:12%;}
 [data-theme="light"] .photo .p-light,[data-theme="dark"] .photo .p-dark{opacity:1}
 
 .about{background:var(--c3);color:var(--c3t);padding:1.8cqw;font-size:1.17cqw;line-height:1.55;font-weight:500}
