@@ -123,13 +123,10 @@ main{position:relative;z-index:1;padding:4vw 24px 64px}
 a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset:3px}
 
 /* Language pill (top right, partly off-screen like Figma) */
-/* Language pill (top right, partly off-screen like Figma) */
-.lang{--h:var(--tab-h);position:fixed;z-index:3;top:var(--tab-top);right:calc(var(--h) * -.3);height:var(--h);width:calc(var(--h) * 1.45);border:2px solid var(--line);border-radius:calc(var(--h) / 2);background:transparent;color:var(--line);display:flex;align-items:center;padding-left:calc(var(--h) * .24);cursor:pointer;transition:color .6s,border-color .6s}
-.lang svg{width:calc(var(--h) * .52);height:calc(var(--h) * .52)}
+.lang{--h:var(--tab-h);position:fixed;z-index:3;top:var(--tab-top);right:0;height:var(--h);width:calc(var(--h) * 1.45);border:2px solid var(--line);border-right:none;border-radius:calc(var(--h) / 2) 0 0 calc(var(--h) / 2);background:transparent;color:var(--line);display:flex;align-items:center;padding-left:calc(var(--h) * .24);cursor:pointer;transition:color .6s,border-color .6s}.lang svg{width:calc(var(--h) * .52);height:calc(var(--h) * .52)}
 
 /* Contact / share tab: sits under the language tab, expands downward to show email, LinkedIn and CV */
-.share{--h:var(--tab-h);position:fixed;z-index:3;top:calc(var(--tab-top) + var(--h) * 1.35);right:calc(var(--h) * -.3);width:calc(var(--h) * 1.45);height:var(--h);border:2px solid var(--line);border-radius:calc(var(--h) / 2);color:var(--line);overflow:hidden;transition:height .5s cubic-bezier(.4,0,.2,1),color .6s,border-color .6s}
-.share.open{height:calc(var(--h) * 2.71)}
+.share{--h:var(--tab-h);position:fixed;z-index:3;top:calc(var(--tab-top) + var(--h) * 1.35);right:0;width:calc(var(--h) * 1.45);height:var(--h);border:2px solid var(--line);border-right:none;border-radius:calc(var(--h) / 2) 0 0 calc(var(--h) / 2);color:var(--line);overflow:hidden;transition:height .5s cubic-bezier(.4,0,.2,1),color .6s,border-color .6s}.share.open{height:calc(var(--h) * 2.71)}
 .share-toggle{position:absolute;top:0;left:0;width:100%;height:calc(var(--h) - 4px);border:0;background:none;color:inherit;cursor:pointer;display:flex;align-items:center;padding-left:calc(var(--h) * .24);transition:opacity .25s}
 .share-toggle svg{width:calc(var(--h) * .5);height:calc(var(--h) * .5)}
 .share.open .share-toggle{opacity:0;pointer-events:none}
@@ -187,7 +184,7 @@ a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset
     <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M11.5 14 20.5 8.5M11.5 18l9 5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><g fill="currentColor"><circle cx="24" cy="6.5" r="4.5"/><circle cx="8" cy="16" r="4.5"/><circle cx="24" cy="25.5" r="4.5"/></g></svg>
   </button>
   <div class="share-links" id="share-links">
-    <a href="mailto:daniellevg101@gmail.com" aria-label="Email me">
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=daniellevg101@gmail.com" target="_blank" rel="noopener" aria-label="Email me">
       <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-mail"><rect width="32" height="32" fill="#fff"/><path d="M7 10 16 16.8 25 10" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></mask></defs><rect x="1" y="4" width="30" height="24" rx="2" fill="currentColor" mask="url(#m-mail)"/></svg>
     </a>
     <a href="https://www.linkedin.com/in/danielle-von-graszouw-324382159" target="_blank" rel="noopener" aria-label="LinkedIn">
@@ -235,7 +232,7 @@ a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset
   <p>With roots in illustration, storytelling, and research, I thrive in a space where creativity meets empathy. My work spans everything from visual design and branding to user research and strategy. All with a common goal: to help people connect, navigate, and feel through design.</p></div><div class="face back" aria-hidden="true">About</div></div>
 </section>
 
-          <a class="card contact" href="mailto:daniellevg101@gmail.com">
+          <a class="card contact" href="https://mail.google.com/mail/?view=cm&fs=1&to=daniellevg101@gmail.com" target="_blank" rel="noopener">
   <span class="q">Have some questions or<br>want to chat?</span>
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 19L19 5M8 5h11v11"/></svg>
   <span class="cta">Contact me</span>
