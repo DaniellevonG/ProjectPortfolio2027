@@ -28,6 +28,7 @@
   /* ---- Your image files: change these paths if yours are named differently ---- */
   --bg-light-img:url("dashboard-background-light.png");
   --bg-dark-img:url("dashboard-background-dark.png");
+  --hov-bg:#7a5045; --hov-t:#f6efe9; --tab-h:clamp(44px,3.65vw,62px); --tab-top:2vw;
 
   --page:#f1eee8; --name:#5e2b35; --line:#5e2b35;
   --c1:#835b88; --c1t:#f3b7f3;
@@ -47,6 +48,7 @@
   --c3:#7a6180; --c3t:#eadfec;
   --c4:#4a6877; --c4t:#c3d3db;
   --knob:#1e1f23;
+  --hov-bg:#adb4c0; --hov-t:#1f222a;
 }
 *,*::before,*::after{box-sizing:inherit}
 html{height:100%}
@@ -95,8 +97,15 @@ main{position:relative;z-index:1;padding:4vw 24px 64px}
 [data-theme="light"] .photo .p-light { opacity: 1; }
 [data-theme="dark"] .photo .p-dark { opacity: 1; }
 
-.about{background:var(--c3);color:var(--c3t);padding:1.8cqw;font-size:1.25cqw;line-height:1.45;font-weight:500;display:flex;flex-direction:column;justify-content:center}
-.about p{margin:0 0 0.8em}.about p:last-child{margin:0}
+/* About card flip: text face <-> "About" title face (hover on desktop, tap on touch, Enter/Space on keyboard) */
+.about{position:relative;perspective:1200px;overflow:visible;background:none;cursor:pointer}
+.flipper{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.4,.2,.2,1)}
+.face{position:absolute;inset:0;border-radius:1.5cqw;background:var(--c3);color:var(--c3t);-webkit-backface-visibility:hidden;backface-visibility:hidden;transition:background-color .6s,color .6s}
+.face.front{padding:1.8cqw;font-size:1.25cqw;line-height:1.45;font-weight:500;display:flex;flex-direction:column;justify-content:center}
+.face.back{transform:rotateY(180deg);display:flex;align-items:center;justify-content:center;font-family:"Dragon Serial",Georgia,serif;font-weight:800;font-size:6.2cqw;line-height:1}
+@media (hover:hover){.about:hover .flipper{transform:rotateY(180deg)}}
+.about:focus-visible .flipper,.about.is-flipped .flipper{transform:rotateY(180deg)}
+.front p{margin:0 0 0.8em}.front p:last-child{margin:0}
 
 .contact{position:relative;background:var(--c4);color:var(--c4t);padding:1.8cqw;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none}
 .contact .q{font-weight:600;font-size:1.5cqw;line-height:1.25;max-width:12em}
@@ -109,14 +118,32 @@ main{position:relative;z-index:1;padding:4vw 24px 64px}
 .projects h2{margin:0 0 2.6cqw;font-family:"Dragon Serial",Georgia,serif;font-weight:600;font-size:4.8cqw;line-height:1}
 .projects ul{list-style:none;margin:0;padding:0;width:100%;border-top:2px solid var(--c2r);transition:border-color .6s}
 .projects li{border-bottom:2px solid var(--c2r);transition:border-color .6s}
-.projects a{display:flex;align-items:center;height:5.29cqw;color:inherit;text-decoration:none;font-weight:500;font-size:1.88cqw;transition:padding .25s}
-.projects a:hover,.projects a:focus-visible{padding-left:10px}
+.projects a{display:flex;align-items:center;height:5.29cqw;color:inherit;text-decoration:none;font-weight:500;font-size:1.88cqw;border-radius:.3cqw;transition:padding .25s,background-color .25s,color .25s}
+.projects a:hover,.projects a:focus-visible{padding-left:1.2cqw;background:var(--hov-bg);color:var(--hov-t)}
 a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset:3px}
 
 /* Language pill (top right, partly off-screen like Figma) */
-.lang{--h:clamp(44px,3.65vw,62px);position:fixed;z-index:3;top:2vw;right:calc(var(--h) * -.3);height:var(--h);width:calc(var(--h) * 1.45);border:2px solid var(--line);border-radius:calc(var(--h) / 2);background:transparent;color:var(--line);display:flex;align-items:center;padding-left:calc(var(--h) * .24);cursor:pointer;transition:color .6s,border-color .6s}
+/* Language pill (top right, partly off-screen like Figma) */
+.lang{--h:var(--tab-h);position:fixed;z-index:3;top:var(--tab-top);right:calc(var(--h) * -.3);height:var(--h);width:calc(var(--h) * 1.45);border:2px solid var(--line);border-radius:calc(var(--h) / 2);background:transparent;color:var(--line);display:flex;align-items:center;padding-left:calc(var(--h) * .24);cursor:pointer;transition:color .6s,border-color .6s}
 .lang svg{width:calc(var(--h) * .52);height:calc(var(--h) * .52)}
 
+/* Contact / share tab: sits under the language tab, expands downward to show email, LinkedIn and CV */
+.share{--h:var(--tab-h);position:fixed;z-index:3;top:calc(var(--tab-top) + var(--h) * 1.35);right:calc(var(--h) * -.3);width:calc(var(--h) * 1.45);height:var(--h);border:2px solid var(--line);border-radius:calc(var(--h) / 2);color:var(--line);overflow:hidden;transition:height .5s cubic-bezier(.4,0,.2,1),color .6s,border-color .6s}
+.share.open{height:calc(var(--h) * 2.71)}
+.share-toggle{position:absolute;top:0;left:0;width:100%;height:calc(var(--h) - 4px);border:0;background:none;color:inherit;cursor:pointer;display:flex;align-items:center;padding-left:calc(var(--h) * .24);transition:opacity .25s}
+.share-toggle svg{width:calc(var(--h) * .5);height:calc(var(--h) * .5)}
+.share.open .share-toggle{opacity:0;pointer-events:none}
+.share-links{position:absolute;top:0;left:0;display:flex;flex-direction:column;align-items:flex-start;gap:calc(var(--h) * .355);padding:calc(var(--h) * .25 - 2px) 0 0 calc(var(--h) * .24 - 2px);opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s}
+.share-links a{display:block;width:calc(var(--h) * .52);height:calc(var(--h) * .52);color:inherit;transition:transform .2s}
+.share-links svg{display:block;width:100%;height:100%}
+.share-links a:hover,.share-links a:focus-visible{transform:scale(1.12)}
+.share.open .share-links{opacity:1;visibility:visible;transition:opacity .3s .15s,visibility 0s}
+@media (hover:hover){
+  .share:hover{height:calc(var(--h) * 2.71)}
+  .share:hover .share-toggle{opacity:0;pointer-events:none}
+  .share:hover .share-links{opacity:1;visibility:visible;transition:opacity .3s .15s,visibility 0s}
+}
+  
 /* Day/night slider: half-ellipse track, small knob */
 .slider{position:fixed;z-index:3;left:0;top:50%;transform:translateY(-50%);height:clamp(260px,34vh,420px);width:auto;aspect-ratio:90/400;touch-action:none;color:var(--line);transition:color .6s}
 .slider path{fill:none;stroke:currentColor;stroke-width:1.5}
@@ -137,13 +164,14 @@ a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset
   .card{border-radius:16px}
   .hero{min-height:260px;padding:20px}.hero h1{font-size:34px}
   .photo{height:340px}
-  .about{padding:20px;font-size:14px}
+  .about{height:330px}.face{border-radius:16px}.face.front{padding:20px;font-size:14px}.face.back{font-size:56px}
   .projects{padding:22px 20px}.projects h2{font-size:40px;margin-bottom:22px}
   .projects ul{width:100%}.projects a{height:auto;padding:14px 0;font-size:17px}
   .contact{min-height:190px;padding:20px}.contact .q{font-size:15px}.contact .cta{font-size:40px}
   .contact svg{top:20px;right:20px;width:22px;height:22px}
   .slider{height:220px}
   .lang{top:16px}
+  :root{--tab-top:16px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -151,8 +179,27 @@ a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset
 <body>
 <div class="bg bg-light"></div><div class="bg bg-dark"></div>
 
-<button class="lang" aria-label="Change language"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><circle cx="16" cy="16" r="13"/><ellipse cx="16" cy="16" rx="6" ry="13"/><path d="M3 16h26M5 9h22M5 23h22M16 3v26"/></svg></button>
+<button class="lang" aria-label="Change language"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-globe"><rect width="32" height="32" fill="#fff"/><g fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="round"><ellipse cx="16" cy="16" rx="6" ry="12"/><path d="M4.5 16h23M6.5 9.5h19M6.5 22.5h19M16 4v24"/></g></mask></defs><circle cx="16" cy="16" r="15" fill="currentColor" mask="url(#m-globe)"/></svg></button>
 
+<!-- Contact / share tab: hover (desktop) or tap (touch) to expand -->
+<div class="share" id="share">
+  <button class="share-toggle" type="button" aria-expanded="false" aria-controls="share-links" aria-label="Contact and links">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M11.5 14 20.5 8.5M11.5 18l9 5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><g fill="currentColor"><circle cx="24" cy="6.5" r="4.5"/><circle cx="8" cy="16" r="4.5"/><circle cx="24" cy="25.5" r="4.5"/></g></svg>
+  </button>
+  <div class="share-links" id="share-links">
+    <a href="mailto:daniellevg101@gmail.com" aria-label="Email me">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-mail"><rect width="32" height="32" fill="#fff"/><path d="M7 10 16 16.8 25 10" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></mask></defs><rect x="1" y="4" width="30" height="24" rx="2" fill="currentColor" mask="url(#m-mail)"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/danielle-von-graszouw-324382159" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-in"><rect width="32" height="32" fill="#fff"/><g fill="#000"><circle cx="8.5" cy="9" r="2.3"/><rect x="6.5" y="13" width="4" height="12"/><path d="M13 13h4v2c.8-1.4 2.2-2.4 4.4-2.4 3.6 0 5.6 2.3 5.6 6.3V25h-4v-6.2c0-1.8-.9-2.9-2.5-2.9S17 17 17 18.8V25h-4z"/></g></mask></defs><rect x="1" y="1" width="30" height="30" rx="4" fill="currentColor" mask="url(#m-in)"/></svg>
+    </a>
+    <!-- TODO: put your CV PDF next to index.html and match the file name -->
+    <a href="https://www.canva.com/design/DADGWXKu5So/C_0AAF2JJDI3aSGRN6UJRQ/view?utm_content=DADGWXKu5So&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h7096e06519" target="_blank" rel="noopener" aria-label="View my CV">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-cv"><rect width="32" height="32" fill="#fff"/><text x="16" y="19.5" text-anchor="middle" font-family="Raleway,sans-serif" font-weight="700" font-size="10" fill="#000">CV</text></mask></defs><path d="M16 30C6 23 1.5 18.5 1.5 12.5 1.5 8 4.8 4.5 9 4.5c2.8 0 5 1.4 7 3.5 2-2.1 4.2-3.5 7-3.5 4.2 0 7.5 3.5 7.5 8 0 6-4.5 10.5-14.5 17.5z" fill="currentColor" mask="url(#m-cv)"/></svg>
+    </a>
+  </div>
+</div>
+  
 <!-- Day / night slider: click or drag the knob along the curve -->
 <svg class="slider" viewBox="0 0 90 400" role="group" aria-label="Colour theme">
   <path id="track" d="M0,2 A72,198 0 0 1 0,398"/>
@@ -183,10 +230,10 @@ a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset
         </div>
 
         <div class="row row2">
-          <section class="card about" id="about">
-            <p>Hello, I’m Danielle, a passionate and versatile designer with a background in software design and a love for creating experiences that are both meaningful and impactful.</p>
-            <p>With roots in illustration, storytelling, and research, I thrive in a space where creativity meets empathy. My work spans everything from visual design and branding to user research and strategy. All with a common goal: to help people connect, navigate, and feel through design.</p>
-          </section>
+          <section class="card about" id="about" tabindex="0" aria-label="About me"><div class="flipper"><div class="face front">
+  <p>Hello, I’m Danielle, a passionate and versatile designer with a background in software design and a love for creating experiences that are both meaningful and impactful.</p>
+  <p>With roots in illustration, storytelling, and research, I thrive in a space where creativity meets empathy. My work spans everything from visual design and branding to user research and strategy. All with a common goal: to help people connect, navigate, and feel through design.</p></div><div class="face back" aria-hidden="true">About</div></div>
+</section>
 
           <a class="card contact" href="mailto:daniellevg101@gmail.com">
   <span class="q">Have some questions or<br>want to chat?</span>
@@ -260,6 +307,21 @@ a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset
   });
   hit.addEventListener('click',toggle);
   knob.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
+})();
+</script>
+  <script>
+// Contact/share tab + About card flip
+(function(){
+  var share=document.getElementById('share'),tog=share.querySelector('.share-toggle');
+  function setOpen(o){share.classList.toggle('open',o);tog.setAttribute('aria-expanded',o)}
+  tog.addEventListener('click',function(e){e.stopPropagation();setOpen(!share.classList.contains('open'))});
+  document.addEventListener('click',function(e){if(!share.contains(e.target))setOpen(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setOpen(false)});
+
+  var about=document.getElementById('about'),link=document.querySelector('.about-link');
+  if(matchMedia('(hover:none)').matches){about.addEventListener('click',function(){about.classList.toggle('is-flipped')})}
+  about.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();about.classList.toggle('is-flipped')}});
+  link.addEventListener('click',function(e){e.preventDefault();about.classList.toggle('is-flipped')});
 })();
 </script>
 </body>
