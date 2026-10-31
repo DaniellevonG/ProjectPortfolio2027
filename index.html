@@ -133,9 +133,7 @@ a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset
 .share.open .share-links{opacity:1;visibility:visible;transition:opacity .3s .15s,visibility 0s}
   
 /* Day/night slider: half-ellipse track, small knob */
-.slider{position:fixed;z-index:3;left:0;top:50%;transform:translateY(-50%);height:425px;width:95px;touch-action:none;color:var(--line);transition:color .6s}
-.k-scale{transition:transform .3s}
-.slider path{fill:none;stroke:currentColor;stroke-width:2}
+.slider{position:fixed;z-index:3;left:0;top:50%;transform:translateY(-50%);height:clamp(280px,36vh,425px);width:auto;aspect-ratio:95/425;touch-action:none;color:var(--line);transition:color .6s}.slider path{fill:none;stroke:currentColor;stroke-width:2}
 .knob{cursor:grab;outline:none}
 .knob circle{fill:var(--knob);stroke:currentColor;stroke-width:2;transition:fill .6s}
 .knob:focus-visible circle{stroke-width:3}
@@ -222,8 +220,8 @@ a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset
   
 <!-- Day / night slider: click or drag the knob along the curve -->
 <svg class="slider" viewBox="0 0 95 425" role="group" aria-label="Colour theme">
-  <path id="track" d="M2,2 A91,210.5 0 0 1 2,423" vector-effect="non-scaling-stroke"/>
-  <path id="hit" d="M2,2 A91,210.5 0 0 1 2,423" style="stroke:transparent;stroke-width:40;cursor:pointer"/>
+  <path id="track" d="M2,2 A73,210.5 0 0 1 2,423" vector-effect="non-scaling-stroke"/>
+  <path id="hit" d="M2,2 A73,210.5 0 0 1 2,423" style="stroke:transparent;stroke-width:40;cursor:pointer"/>
   <g class="knob" id="knob" tabindex="0" role="switch" aria-checked="false" aria-label="Dark mode">
     <g class="k-scale">
       <circle r="20" vector-effect="non-scaling-stroke"/>
