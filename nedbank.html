@@ -16,7 +16,7 @@
   --page:#efece4; --ink:#3f5b48; --head:#4d6b54; --title:#6b2d3a;
   --pill:#4a6b52; --pill-t:#f1eee8; --rule:#4a6b52; --ph:rgba(74,107,82,.1);
   --note:#6b2d3a; --main:#e8895a; --main-t:#fff; --line:#5e2b35; --knob:#f6f2ea;
-  --tab-h:clamp(44px,3.65vw,62px);
+  --tab-h:clamp(44px,3.65vw,62px); --tab-top:2vw;
   box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
 :root[data-theme="dark"]{
@@ -90,15 +90,25 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
 .up{display:block;text-align:center;margin:56px 0 40px;text-decoration:none;font-size:13px}
 .up::before{content:"︿";display:block;font-size:16px}
 
-/* top-right language tab + theme slider (same as homepage) */
-.lang{position:fixed;z-index:3;top:2vw;right:calc(var(--tab-h) * -.3);height:var(--tab-h);width:calc(var(--tab-h) * 1.45);border:2px solid var(--line);border-radius:calc(var(--tab-h) / 2);background:transparent;color:var(--line);display:flex;align-items:center;padding-left:calc(var(--tab-h) * .24);cursor:pointer;transition:color .6s,border-color .6s}
-.lang svg{width:calc(var(--tab-h) * .52);height:calc(var(--tab-h) * .52)}
-.slider{position:fixed;z-index:3;left:0;top:50%;transform:translateY(-50%);height:clamp(260px,34vh,420px);aspect-ratio:90/400;touch-action:none;color:var(--line);transition:color .6s}
-.slider path{fill:none;stroke:currentColor;stroke-width:1.5}
+/* Contact / share tab */
+.share{--h:var(--tab-h);position:fixed;z-index:3;top:var(--tab-top);right:0;width:calc(var(--h) * 0.9);height:var(--h);border:2px solid var(--line);border-right:none;border-radius:calc(var(--h) / 2) 0 0 calc(var(--h) / 2);color:var(--line);overflow:hidden;transition:height .5s cubic-bezier(.4,0,.2,1),color .6s,border-color .6s}
+.share.open{height:calc(var(--h) * 2.71)}
+.share-toggle{position:absolute;top:0;left:0;width:100%;height:calc(var(--h) - 4px);border:0;background:none;color:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .25s}
+.share-toggle svg{width:calc(var(--h) * .52);height:calc(var(--h) * .52)}
+.share.open .share-toggle{opacity:0;pointer-events:none}
+.share-links{position:absolute;top:0;left:0;width:100%;display:flex;flex-direction:column;align-items:center;gap:calc(var(--h) * .355);padding:calc(var(--h) * .25 - 2px) 0 0 0;opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s}
+.share-links a{display:block;width:calc(var(--h) * .52);height:calc(var(--h) * .52);color:inherit;transition:transform .2s}
+.share-links svg{display:block;width:100%;height:100%}
+.share-links a:hover,.share-links a:focus-visible{transform:scale(1.12)}
+.share.open .share-links{opacity:1;visibility:visible;transition:opacity .3s .15s,visibility 0s}
+
+/* Day/night slider: half-ellipse track, small knob */
+.slider{position:fixed;z-index:3;left:0;top:50%;transform:translateY(-50%);height:clamp(320px,40vh,500px);width:auto;aspect-ratio:90/400;touch-action:none;color:var(--line);transition:color .6s}
+.slider path{fill:none;stroke:currentColor;stroke-width:2}
 .knob{cursor:grab;outline:none}
-.knob circle{fill:var(--knob);stroke:currentColor;stroke-width:1.5;transition:fill .6s}
+.knob circle{fill:var(--knob);stroke:currentColor;stroke-width:2;transition:fill .6s}
 .knob:focus-visible circle{stroke-width:3}
-.knob .ico{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+.knob .ico{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
 .knob .moon{fill:currentColor;stroke:none}
 [data-theme="light"] .moon,[data-theme="dark"] .sun{display:none}
 
@@ -114,13 +124,39 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
   .box.m+.box.m::before{border-left-color:var(--main)}.box.m+.box.m::after{border-top-color:var(--main);border-left-color:transparent}
   .end .box::before{display:none}
   .slider{height:220px}
+  :root{--tab-top:16px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
+  <script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('theme');
+      var pref = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', pref);
+    } catch(e) {}
+  })();
+</script>
 </head>
 <body id="top">
 
-<button class="lang" aria-label="Change language"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-globe"><rect width="32" height="32" fill="#fff"/><g fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="round"><ellipse cx="16" cy="16" rx="6" ry="12"/><path d="M4.5 16h23M6.5 9.5h19M6.5 22.5h19M16 4v24"/></g></mask></defs><circle cx="16" cy="16" r="15" fill="currentColor" mask="url(#m-globe)"/></svg></button>
+<!-- Contact / share tab: click to expand -->
+<div class="share" id="share">
+  <button class="share-toggle" type="button" aria-expanded="false" aria-controls="share-links" aria-label="Contact and links">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-globe"><rect width="32" height="32" fill="#fff"/><g fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"><ellipse cx="16" cy="16" rx="6" ry="12"/><path d="M4.5 16h23M6.5 9.5h19M6.5 22.5h19M16 4v24"/></g></mask></defs><circle cx="16" cy="16" r="15" fill="currentColor" mask="url(#m-globe)"/></svg>
+  </button>
+  <div class="share-links" id="share-links">
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=daniellevg101@gmail.com" target="_blank" rel="noopener" aria-label="Email me">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-mail"><rect width="32" height="32" fill="#fff"/><path d="M7 10 16 16.8 25 10" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></mask></defs><rect x="1" y="4" width="30" height="24" rx="2" fill="currentColor" mask="url(#m-mail)"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/danielle-von-graszouw-324382159" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-in"><rect width="32" height="32" fill="#fff"/><g fill="#000"><circle cx="8.5" cy="9" r="2.3"/><rect x="6.5" y="13" width="4" height="12"/><path d="M13 13h4v2c.8-1.4 2.2-2.4 4.4-2.4 3.6 0 5.6 2.3 5.6 6.3V25h-4v-6.2c0-1.8-.9-2.9-2.5-2.9S17 17 17 18.8V25h-4z"/></g></mask></defs><rect x="1" y="1" width="30" height="30" rx="4" fill="currentColor" mask="url(#m-in)"/></svg>
+    </a>
+    <a href="Danielle-von-Graszouw-CV.pdf" target="_blank" rel="noopener" aria-label="View my CV">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-cv"><rect width="32" height="32" fill="#fff"/><text x="16" y="19.5" text-anchor="middle" font-family="Raleway,sans-serif" font-weight="700" font-size="10" fill="#000">CV</text></mask></defs><path d="M16 30C6 23 1.5 18.5 1.5 12.5 1.5 8 4.8 4.5 9 4.5c2.8 0 5 1.4 7 3.5 2-2.1 4.2-3.5 7-3.5 4.2 0 7.5 3.5 7.5 8 0 6-4.5 10.5-14.5 17.5z" fill="currentColor" mask="url(#m-cv)"/></svg>
+    </a>
+  </div>
+</div>
 
 <svg class="slider" viewBox="0 0 90 400" role="group" aria-label="Colour theme">
   <path id="track" d="M0,2 A72,198 0 0 1 0,398"/>
@@ -281,6 +317,16 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
   knob.addEventListener('pointerup',function(){drag=false;if(moved){setTheme(t>.5?'dark':'light')}else{toggle()}});
   hit.addEventListener('click',toggle);
   knob.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
+})();
+</script>
+  <script>
+(function(){
+  var share=document.getElementById('share'),tog=share.querySelector('.share-toggle');
+  function setOpen(o){share.classList.toggle('open',o);tog.setAttribute('aria-expanded',o)}
+  tog.addEventListener('click',function(e){e.stopPropagation();setOpen(!share.classList.contains('open'))});
+  share.addEventListener('mouseleave', function() { setOpen(false) });
+  document.addEventListener('click',function(e){if(!share.contains(e.target))setOpen(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setOpen(false)});
 })();
 </script>
 </body>
