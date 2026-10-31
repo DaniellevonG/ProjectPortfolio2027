@@ -122,24 +122,17 @@ main{position:relative;z-index:1;padding:4vw 24px 64px}
 .projects a:hover,.projects a:focus-visible{padding-left:1.2cqw;background:var(--hov-bg);color:var(--hov-t)}
 a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset:3px}
 
-/* Language pill (top right, partly off-screen like Figma) */
-.lang{--h:var(--tab-h);position:fixed;z-index:3;top:var(--tab-top);right:0;height:var(--h);width:calc(var(--h) * 1.45);border:2px solid var(--line);border-right:none;border-radius:calc(var(--h) / 2) 0 0 calc(var(--h) / 2);background:transparent;color:var(--line);display:flex;align-items:center;padding-left:calc(var(--h) * .24);cursor:pointer;transition:color .6s,border-color .6s}.lang svg{width:calc(var(--h) * .52);height:calc(var(--h) * .52)}
-
-/* Contact / share tab: sits under the language tab, expands downward to show email, LinkedIn and CV */
-.share{--h:var(--tab-h);position:fixed;z-index:3;top:calc(var(--tab-top) + var(--h) * 1.35);right:0;width:calc(var(--h) * 1.45);height:var(--h);border:2px solid var(--line);border-right:none;border-radius:calc(var(--h) / 2) 0 0 calc(var(--h) / 2);color:var(--line);overflow:hidden;transition:height .5s cubic-bezier(.4,0,.2,1),color .6s,border-color .6s}.share.open{height:calc(var(--h) * 2.71)}
-.share-toggle{position:absolute;top:0;left:0;width:100%;height:calc(var(--h) - 4px);border:0;background:none;color:inherit;cursor:pointer;display:flex;align-items:center;padding-left:calc(var(--h) * .24);transition:opacity .25s}
-.share-toggle svg{width:calc(var(--h) * .5);height:calc(var(--h) * .5)}
+/* Contact / share tab */
+.share{--h:var(--tab-h);position:fixed;z-index:3;top:var(--tab-top);right:0;width:calc(var(--h) * 0.9);height:var(--h);border:2px solid var(--line);border-right:none;border-radius:calc(var(--h) / 2) 0 0 calc(var(--h) / 2);color:var(--line);overflow:hidden;transition:height .5s cubic-bezier(.4,0,.2,1),color .6s,border-color .6s}
+.share.open{height:calc(var(--h) * 2.71)}
+.share-toggle{position:absolute;top:0;left:0;width:100%;height:calc(var(--h) - 4px);border:0;background:none;color:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .25s}
+.share-toggle svg{width:calc(var(--h) * .52);height:calc(var(--h) * .52)}
 .share.open .share-toggle{opacity:0;pointer-events:none}
-.share-links{position:absolute;top:0;left:0;display:flex;flex-direction:column;align-items:flex-start;gap:calc(var(--h) * .355);padding:calc(var(--h) * .25 - 2px) 0 0 calc(var(--h) * .24 - 2px);opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s}
+.share-links{position:absolute;top:0;left:0;width:100%;display:flex;flex-direction:column;align-items:center;gap:calc(var(--h) * .355);padding:calc(var(--h) * .25 - 2px) 0 0 0;opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s}
 .share-links a{display:block;width:calc(var(--h) * .52);height:calc(var(--h) * .52);color:inherit;transition:transform .2s}
 .share-links svg{display:block;width:100%;height:100%}
 .share-links a:hover,.share-links a:focus-visible{transform:scale(1.12)}
 .share.open .share-links{opacity:1;visibility:visible;transition:opacity .3s .15s,visibility 0s}
-@media (hover:hover){
-  .share:hover{height:calc(var(--h) * 2.71)}
-  .share:hover .share-toggle{opacity:0;pointer-events:none}
-  .share:hover .share-links{opacity:1;visibility:visible;transition:opacity .3s .15s,visibility 0s}
-}
   
 /* Day/night slider: half-ellipse track, small knob */
 .slider{position:fixed;z-index:3;left:0;top:50%;transform:translateY(-50%);height:clamp(260px,34vh,420px);width:auto;aspect-ratio:90/400;touch-action:none;color:var(--line);transition:color .6s}
@@ -181,16 +174,19 @@ a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset
 <!-- Contact / share tab: hover (desktop) or tap (touch) to expand -->
 <div class="share" id="share">
   <button class="share-toggle" type="button" aria-expanded="false" aria-controls="share-links" aria-label="Contact and links">
-    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M11.5 14 20.5 8.5M11.5 18l9 5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><g fill="currentColor"><circle cx="24" cy="6.5" r="4.5"/><circle cx="8" cy="16" r="4.5"/><circle cx="24" cy="25.5" r="4.5"/></g></svg>
+    <!-- This is your Globe icon -->
+    <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-globe"><rect width="32" height="32" fill="#fff"/><g fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="round"><ellipse cx="16" cy="16" rx="6" ry="12"/><path d="M4.5 16h23M6.5 9.5h19M6.5 22.5h19M16 4v24"/></g></mask></defs><circle cx="16" cy="16" r="15" fill="currentColor" mask="url(#m-globe)"/></svg>
   </button>
   <div class="share-links" id="share-links">
+    <!-- Email link -->
     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=daniellevg101@gmail.com" target="_blank" rel="noopener" aria-label="Email me">
       <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-mail"><rect width="32" height="32" fill="#fff"/><path d="M7 10 16 16.8 25 10" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></mask></defs><rect x="1" y="4" width="30" height="24" rx="2" fill="currentColor" mask="url(#m-mail)"/></svg>
     </a>
-    <a href="https://www.linkedin.com/in/danielle-von-graszouw-324382159" target="_blank" rel="noopener" aria-label="LinkedIn">
+    <!-- LinkedIn link -->
+    <a href="www.linkedin.com/in/danielle-von-graszouw-324382159" target="_blank" rel="noopener" aria-label="LinkedIn">
       <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-in"><rect width="32" height="32" fill="#fff"/><g fill="#000"><circle cx="8.5" cy="9" r="2.3"/><rect x="6.5" y="13" width="4" height="12"/><path d="M13 13h4v2c.8-1.4 2.2-2.4 4.4-2.4 3.6 0 5.6 2.3 5.6 6.3V25h-4v-6.2c0-1.8-.9-2.9-2.5-2.9S17 17 17 18.8V25h-4z"/></g></mask></defs><rect x="1" y="1" width="30" height="30" rx="4" fill="currentColor" mask="url(#m-in)"/></svg>
     </a>
-    <!-- TODO: put your CV PDF next to index.html and match the file name -->
+    <!-- CV link -->
     <a href="https://www.canva.com/design/DADGWXKu5So/C_0AAF2JJDI3aSGRN6UJRQ/view?utm_content=DADGWXKu5So&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h7096e06519" target="_blank" rel="noopener" aria-label="View my CV">
       <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-cv"><rect width="32" height="32" fill="#fff"/><text x="16" y="19.5" text-anchor="middle" font-family="Raleway,sans-serif" font-weight="700" font-size="10" fill="#000">CV</text></mask></defs><path d="M16 30C6 23 1.5 18.5 1.5 12.5 1.5 8 4.8 4.5 9 4.5c2.8 0 5 1.4 7 3.5 2-2.1 4.2-3.5 7-3.5 4.2 0 7.5 3.5 7.5 8 0 6-4.5 10.5-14.5 17.5z" fill="currentColor" mask="url(#m-cv)"/></svg>
     </a>
