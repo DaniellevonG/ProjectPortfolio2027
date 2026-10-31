@@ -164,6 +164,15 @@ a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+  <script>
+  (function(){
+    try {
+      var saved = localStorage.getItem('theme');
+      var pref = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', pref);
+    } catch(e) {}
+  })();
+</script>
 </head>
 <body>
 <div class="bg bg-light"></div><div class="bg bg-dark"></div>
