@@ -183,7 +183,7 @@ a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset
       <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-mail"><rect width="32" height="32" fill="#fff"/><path d="M7 10 16 16.8 25 10" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></mask></defs><rect x="1" y="4" width="30" height="24" rx="2" fill="currentColor" mask="url(#m-mail)"/></svg>
     </a>
     <!-- LinkedIn link -->
-    <a href="www.linkedin.com/in/danielle-von-graszouw-324382159" target="_blank" rel="noopener" aria-label="LinkedIn">
+    <a href="https://www.linkedin.com/in/danielle-von-graszouw-324382159" target="_blank" rel="noopener" aria-label="LinkedIn">
       <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-in"><rect width="32" height="32" fill="#fff"/><g fill="#000"><circle cx="8.5" cy="9" r="2.3"/><rect x="6.5" y="13" width="4" height="12"/><path d="M13 13h4v2c.8-1.4 2.2-2.4 4.4-2.4 3.6 0 5.6 2.3 5.6 6.3V25h-4v-6.2c0-1.8-.9-2.9-2.5-2.9S17 17 17 18.8V25h-4z"/></g></mask></defs><rect x="1" y="1" width="30" height="30" rx="4" fill="currentColor" mask="url(#m-in)"/></svg>
     </a>
     <!-- CV link -->
@@ -303,11 +303,14 @@ a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset
 })();
 </script>
   <script>
-// Contact/share tab + About card flip
+
+    // Contact/share tab + About card flip
 (function(){
   var share=document.getElementById('share'),tog=share.querySelector('.share-toggle');
   function setOpen(o){share.classList.toggle('open',o);tog.setAttribute('aria-expanded',o)}
+  
   tog.addEventListener('click',function(e){e.stopPropagation();setOpen(!share.classList.contains('open'))});
+  share.addEventListener('mouseleave', function() { setOpen(false) }); // This is the new line!
   document.addEventListener('click',function(e){if(!share.contains(e.target))setOpen(false)});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')setOpen(false)});
 
