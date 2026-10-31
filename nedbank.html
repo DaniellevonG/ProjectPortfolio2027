@@ -124,7 +124,7 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
   .box.m+.box.m::before{border-left-color:var(--main)}.box.m+.box.m::after{border-top-color:var(--main);border-left-color:transparent}
   .end .box::before{display:none}
   .slider{height:220px}
-  :root{--tab-top:16px}
+  html{--tab-top:16px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -132,7 +132,7 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
   (function(){
     try {
       var saved = localStorage.getItem('theme');
-      var pref = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var pref = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', pref);
     } catch(e) {}
   })();
