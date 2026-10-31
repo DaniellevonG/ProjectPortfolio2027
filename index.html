@@ -146,20 +146,39 @@ a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset
 @media (max-width:900px){
   main{padding:24px 20px 48px 46px}
   .stage{width:100%}
-  .top{height:auto;padding:0 0 20px}
-  .name{font-size:18px}.about-link{font-size:13px}
-  .grid,.left,.row{display:flex;flex-direction:column;gap:14px;aspect-ratio:auto}
+  
+  /* 1. Stack the header text to match Figma */
+  .top{height:auto;padding:0 0 24px;flex-direction:column;align-items:flex-start;justify-content:center;gap:6px}
+  .name{font-size:15px;line-height:1}
+  .about-link{font-size:12px;line-height:1}
+  
+  /* 2. Flatten the grid structure to allow reordering */
+  .grid{display:flex;flex-direction:column;gap:16px;aspect-ratio:auto}
+  .left,.row{display:contents}
+  
+  /* 3. Reorder the cards exactly as pictured */
+  .hero{order:1;min-height:220px;padding:24px}
+  .photo{order:2;height:340px}
+  .about{order:3;height:380px} 
+  .projects{order:4;padding:24px 20px}
+  .contact{order:5;min-height:200px;padding:24px}
+  
+  /* 4. Adjust internal card styling */
   .card{border-radius:16px}
-  .hero{min-height:260px;padding:20px}.hero h1{font-size:34px}
-  .photo{height:340px}
-  .about{height:330px}.face{border-radius:16px}.face.front{padding:20px;font-size:14px}.face.back{font-size:56px}
-  .projects{padding:22px 20px}.projects h2{font-size:40px;margin-bottom:22px}
-  .projects ul{width:100%}.projects a{height:auto;padding:14px 0;font-size:17px}
-  .contact{min-height:190px;padding:20px}.contact .q{font-size:15px}.contact .cta{font-size:40px}
-  .contact svg{top:20px;right:20px;width:22px;height:22px}
+  .hero h1{font-size:32px}
+  .face{border-radius:16px}
+  .face.front{padding:24px;font-size:14px}
+  .face.back{font-size:52px}
+  .projects h2{font-size:36px;margin-bottom:20px}
+  .projects ul{width:100%}
+  .projects a{height:auto;padding:14px 0;font-size:16px}
+  .contact .q{font-size:15px}
+  .contact .cta{font-size:38px}
+  .contact svg{top:24px;right:24px;width:22px;height:22px}
+  
   .slider{height:220px}
-  .lang{top:16px}
-  :root{--tab-top:16px}
+  html{--tab-top:16px}
+}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
