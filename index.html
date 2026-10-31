@@ -74,8 +74,7 @@ main{position:relative;z-index:1;padding:4vw 24px 64px}
 .stage{container-type:inline-size;width:clamp(320px,70vw,1100px);margin:0 auto}
 
 .top{display:flex;justify-content:space-between;align-items:center;height:8.8cqw;padding:0 4.1cqw 0 4.2cqw}
-.name{margin:0;font-family:"Dragon Serial",Georgia,serif;font-weight:600;font-size:2.2cqw;letter-spacing:.04em;text-transform:uppercase;color:var(--name);transition:color .6s}
-.about-link{font-size:1.7cqw;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--name);text-decoration:none;transition:color .6s}
+.name{margin:0;font-family:"Dragon Serial",Georgia,serif;font-weight:600;font-size:2.8cqw;letter-spacing:.04em;text-transform:uppercase;color:var(--name);transition:color .6s}.about-link{font-size:1.7cqw;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--name);text-decoration:none;transition:color .6s}
 .about-link:hover{text-decoration:underline;text-underline-offset:4px}
 
 .grid{display:grid;grid-template-columns:663fr 276fr;gap:1.88cqw;aspect-ratio:957/608}
@@ -135,12 +134,12 @@ a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset
 .share.open .share-links{opacity:1;visibility:visible;transition:opacity .3s .15s,visibility 0s}
   
 /* Day/night slider: half-ellipse track, small knob */
-.slider{position:fixed;z-index:3;left:0;top:50%;transform:translateY(-50%);height:clamp(260px,34vh,420px);width:auto;aspect-ratio:90/400;touch-action:none;color:var(--line);transition:color .6s}
-.slider path{fill:none;stroke:currentColor;stroke-width:1.5}
+.slider{position:fixed;z-index:3;left:0;top:50%;transform:translateY(-50%);height:clamp(320px,40vh,500px);width:auto;aspect-ratio:90/400;touch-action:none;color:var(--line);transition:color .6s}
+.slider path{fill:none;stroke:currentColor;stroke-width:2}
 .knob{cursor:grab;outline:none}
-.knob circle{fill:var(--knob);stroke:currentColor;stroke-width:1.5;transition:fill .6s}
+.knob circle{fill:var(--knob);stroke:currentColor;stroke-width:2;transition:fill .6s}
 .knob:focus-visible circle{stroke-width:3}
-.knob .ico{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+.knob .ico{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
 .knob .moon{fill:currentColor;stroke:none}
 [data-theme="light"] .moon,[data-theme="dark"] .sun{display:none}
 
@@ -174,13 +173,13 @@ a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset
 <!-- Contact / share tab: hover (desktop) or tap (touch) to expand -->
 <div class="share" id="share">
   <button class="share-toggle" type="button" aria-expanded="false" aria-controls="share-links" aria-label="Contact and links">
-    <!-- This is your Globe icon -->
-    <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-globe"><rect width="32" height="32" fill="#fff"/><g fill="none" stroke="#000" stroke-width="1.6" stroke-linecap="round"><ellipse cx="16" cy="16" rx="6" ry="12"/><path d="M4.5 16h23M6.5 9.5h19M6.5 22.5h19M16 4v24"/></g></mask></defs><circle cx="16" cy="16" r="15" fill="currentColor" mask="url(#m-globe)"/></svg>
+   <!-- This is your Globe icon -->
+    <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-globe"><rect width="32" height="32" fill="#fff"/><g fill="none" stroke="#000" stroke-width="2" stroke-linecap="round"><ellipse cx="16" cy="16" rx="6" ry="12"/><path d="M4.5 16h23M6.5 9.5h19M6.5 22.5h19M16 4v24"/></g></mask></defs><circle cx="16" cy="16" r="15" fill="currentColor" mask="url(#m-globe)"/></svg>
   </button>
   <div class="share-links" id="share-links">
-    <!-- Email link -->
+   <!-- Email link -->
     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=daniellevg101@gmail.com" target="_blank" rel="noopener" aria-label="Email me">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-mail"><rect width="32" height="32" fill="#fff"/><path d="M7 10 16 16.8 25 10" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></mask></defs><rect x="1" y="4" width="30" height="24" rx="2" fill="currentColor" mask="url(#m-mail)"/></svg>
+      <svg viewBox="0 0 32 32" aria-hidden="true"><defs><mask id="m-mail"><rect width="32" height="32" fill="#fff"/><path d="M7 10 16 16.8 25 10" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></mask></defs><rect x="1" y="4" width="30" height="24" rx="2" fill="currentColor" mask="url(#m-mail)"/></svg>
     </a>
     <!-- LinkedIn link -->
     <a href="https://www.linkedin.com/in/danielle-von-graszouw-324382159" target="_blank" rel="noopener" aria-label="LinkedIn">
