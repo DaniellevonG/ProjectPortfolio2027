@@ -192,8 +192,19 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
         <p>I was tasked to redesign and simplify the existing Corporate Saver Servicing platform to improve the servicing onboarding process for both Nedbank agents and clients. As well as completely redesign the system structure and user interface of multiple features.</p>
         <div class="tags">
           <div><ul class="pills"><li>Individual</li></ul><ul class="l"><li>South African ID Number</li><li>Foreign ID Number</li><li>Passport Number</li></ul></div>
-          <div><ul class="pills"><li>Entity</li></ul><ul class="l"><li>SA Registered Business</li><li>Foreign Registered Business</li><li>Trust Number</li><li>IT Number</li><li>Partnerships</li><li>Deceased Estates</li><li>Sole Proprietor</li><li>Other</li></ul></div>
-        </div>
+          <div>
+            <ul class="pills"><li>Entity</li></ul>
+            <ul class="l" style="column-count: 2; column-gap: 20px;">
+              <li>SA Registered Business</li>
+              <li>Foreign Registered Business</li>
+              <li>Trust Number</li>
+              <li>IT Number</li>
+              <li>Partnerships</li>
+              <li>Deceased Estates</li>
+              <li>Sole Proprietor</li>
+              <li>Other</li>
+            </ul>
+          </div> </div>
       </div>
       <div>
         <h3>Responsibilities</h3>
@@ -237,8 +248,8 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
   </section>
 
   <section>
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px"><h2 style="margin:0">Into The Thick Of It</h2><span class="note">Put your cursor<br>on the heart<br>and scroll !</span></div>
-    <div class="row" style="margin-top:22px">
+   <h2 style="margin-bottom: 22px;">Into The Thick Of It</h2>
+  <div class="row">
       <div>
         <h3>Client of Agent: Onboarding</h3>
         <p>This platform is used to onboard individual clients and entities for overall money management services (FICA and FACTA compliance, transactions, investments, property guarantees, FOREX inwards and outwards).</p>
@@ -249,17 +260,21 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
     </div>
     <hr>
     <div class="cols">
-      <div>
+      <div style="display:flex; flex-direction:column;">
         <h3>Client of Agent: Compliance</h3>
         <p>One of the biggest sections of the project, took me over 8 months to complete. 150± combined user stories for the individual and entity compliance sections.</p>
-        <p class="lbl">Collapsed</p>
-        <figure class="shot"><img src="nedbank/compliance-collapsed.png" alt="Compliance section, collapsed" onerror="this.remove()"><span class="ph">nedbank/compliance-collapsed.png</span></figure>
+        <div style="margin-top:auto">
+          <p class="lbl">Collapsed</p>
+          <figure class="shot"><img src="nedbank/compliance-collapsed.png" alt="Compliance section, collapsed" onerror="this.remove()"><span class="ph">nedbank/compliance-collapsed.png</span></figure>
+        </div>
       </div>
-      <div>
+      <div style="display:flex; flex-direction:column;">
         <h3>Client of Agent: Compliance</h3>
         <p>This platform is used to onboard individual clients and entities for overall money management services (FICA and FACTA compliance, transactions, investments, property guarantees, FOREX inwards and outwards).</p>
-        <p class="lbl">Uncollapsed</p>
-        <figure class="shot"><img src="nedbank/compliance-uncollapsed.png" alt="Compliance section, expanded" onerror="this.remove()"><span class="ph">nedbank/compliance-uncollapsed.png</span></figure>
+        <div style="margin-top:auto">
+          <p class="lbl">Uncollapsed</p>
+          <figure class="shot"><img src="nedbank/compliance-uncollapsed.png" alt="Compliance section, expanded" onerror="this.remove()"><span class="ph">nedbank/compliance-uncollapsed.png</span></figure>
+        </div>
       </div>
     </div>
     <hr>
@@ -277,11 +292,9 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
   <section>
     <h2 class="c">Simplified User Flow</h2>
     <p class="sec-p">We received 5 documents from the client outlining the different sections and scenarios needed for the platform. Us as a team first outlined the main linear success journey to use as reference to start wireframes. During our project onboarding we were told to create an easy process and to focus in on the main functionality.</p>
-    <div class="flow" role="img" aria-label="User flow from login and dashboard through creating a new client, compliance and submission for authorisation">
-      <div class="frow o1"><div class="box m">View client</div><div class="box m">Client/Partnership name</div><div class="box m">Client/Partnership info summary</div><div class="box m">View details<br>Choose one: Call Accounts, Investments, Transactions</div></div>
-      <div class="frow"><div class="box m">Login and dashboard</div><div class="box">Create new client</div><div class="box">Select client type: Individual or Entity</div><div class="box">Capture new client</div></div>
-      <div class="frow o3"><div class="box">Compliance</div><div class="box">Submit for authorisation and security checks</div><div class="end"><div class="box">Success</div><div class="box">Fail</div></div></div>
-    </div>
+    <figure class="shot" style="--r:21/9; margin-top:24px; border:none; background:none;">
+      <img src="nedbank/simplified-user-flow.png" alt="Simplified User Flow diagram" onerror="this.remove()">
+    </figure>
   </section>
 
   <section>
