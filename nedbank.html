@@ -13,8 +13,8 @@
 @font-face{font-family:'Dragon Serial';src:url('Dragon-Serial-ExtraBold.ttf') format('truetype');font-weight:800}
 
 :root{
-  --page:#efece4; --ink:#3f5b48; --head:#4d6b54; --title:#6b2d3a;
-  --pill:#4a6b52; --pill-t:#f1eee8; --rule:#4a6b52; --ph:rgba(74,107,82,.1);
+  --page:#efece4; --ink:#3f5b48; --head:#396650; --title:#6b2d3a;
+  --pill:#396650; --pill-t:#f1eee8; --rule:#396650; --ph:rgba(57, 102, 80,.1);
   --note:#6b2d3a; --main:#e8895a; --main-t:#fff; --line:#5e2b35; --knob:#f6f2ea;
   --tab-h:clamp(44px,3.65vw,62px); --tab-top:2vw;
   box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
@@ -190,21 +190,29 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
         <p>This platform is used to onboard individual clients and entities for overall money management services (FICA and FACTA compliance, transactions, investments, property guarantees, FOREX inwards and outwards).</p>
         <h3 style="margin-top:14px">Brief</h3>
         <p>I was tasked to redesign and simplify the existing Corporate Saver Servicing platform to improve the servicing onboarding process for both Nedbank agents and clients. As well as completely redesign the system structure and user interface of multiple features.</p>
-        <div class="tags">
-          <div><ul class="pills"><li>Individual</li></ul><ul class="l"><li>South African ID Number</li><li>Foreign ID Number</li><li>Passport Number</li></ul></div>
+       <div class="tags" style="grid-template-columns: auto 1fr;">
+          <div>
+            <ul class="pills"><li>Individual</li></ul>
+            <ul class="l" style="list-style-type: disc;">
+              <li>South African ID Number</li>
+              <li>Foreign ID Number</li>
+              <li>Passport Number</li>
+            </ul>
+          </div>
           <div>
             <ul class="pills"><li>Entity</li></ul>
-            <ul class="l" style="column-count: 2; column-gap: 20px;">
-              <li>SA Registered Business</li>
-              <li>Foreign Registered Business</li>
-              <li>Trust Number</li>
-              <li>IT Number</li>
-              <li>Partnerships</li>
-              <li>Deceased Estates</li>
-              <li>Sole Proprietor</li>
-              <li>Other</li>
+            <ul class="l" style="column-count: 2; column-gap: 20px; list-style-type: disc;">
+              <li style="break-inside: avoid-column;">SA Registered Business</li>
+              <li style="break-inside: avoid-column;">Foreign Registered Business</li>
+              <li style="break-inside: avoid-column;">Trust Number</li>
+              <li style="break-inside: avoid-column;">IT Number</li>
+              <li style="break-inside: avoid-column;">Partnerships</li>
+              <li style="break-inside: avoid-column;">Deceased Estates</li>
+              <li style="break-inside: avoid-column;">Sole Proprietor</li>
+              <li style="break-inside: avoid-column;">Other</li>
             </ul>
-          </div> </div>
+          </div>
+        </div>
       </div>
       <div>
         <h3>Responsibilities</h3>
@@ -259,8 +267,8 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
       <figure class="shot"><img src="nedbank/onboarding.png" alt="Redesigned capture new client screen" onerror="this.remove()"><span class="ph">nedbank/onboarding.png</span></figure>
     </div>
     <hr>
-    <div class="cols">
-      <div style="display:flex; flex-direction:column;">
+   <div class="cols" style="align-items: stretch;">
+      <div style="display:flex; flex-direction:column; height: 100%;">
         <h3>Client of Agent: Compliance</h3>
         <p>One of the biggest sections of the project, took me over 8 months to complete. 150± combined user stories for the individual and entity compliance sections.</p>
         <div style="margin-top:auto">
@@ -268,7 +276,7 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
           <figure class="shot"><img src="nedbank/compliance-collapsed.png" alt="Compliance section, collapsed" onerror="this.remove()"><span class="ph">nedbank/compliance-collapsed.png</span></figure>
         </div>
       </div>
-      <div style="display:flex; flex-direction:column;">
+      <div style="display:flex; flex-direction:column; height: 100%;">
         <h3>Client of Agent: Compliance</h3>
         <p>This platform is used to onboard individual clients and entities for overall money management services (FICA and FACTA compliance, transactions, investments, property guarantees, FOREX inwards and outwards).</p>
         <div style="margin-top:auto">
