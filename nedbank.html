@@ -115,42 +115,29 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
 
 /* Responsive SVG Flowchart */
 .flow-svg { width: 100%; height: auto; margin: 32px auto 0; display: block; overflow: visible; font-family: "Raleway", sans-serif; }
-.flow-svg .box { rx: 8; ry: 8; }
-.flow-svg .b-brn { fill: #ac5c41; }
-.flow-svg .b-org { fill: #e79565; }
-.flow-svg .b-grn { fill: #5e856f; }
-.flow-svg text { fill: #fff; font-size: 13px; font-weight: 600; text-anchor: middle; dominant-baseline: central; }
-.flow-svg .t-sub { font-size: 11px; font-weight: 400; }
-.flow-svg .t-l { text-anchor: start; font-weight: 400; font-size: 11px; }
-.flow-svg .line { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.flow-svg .l-org { stroke: #e79565; }
-.flow-svg .l-grn { stroke: #5e856f; }
-.flow-svg .l-brn { stroke: #ac5c41; }
-.flow-svg .t-brn { fill: #ac5c41; }
 .flow-desk { display: block; max-width: 900px; }
 .flow-mob { display: none; }
 
 @media (max-width: 820px) {
-  /* Restores perfect bilateral balance: clears slider on left (68px) and globe on right (64px) */
-  .wrap { padding: 24px 64px 48px 68px !important; box-sizing: border-box !important; }
+  /* 1. Page Margin Fix: Removes the syntax error and perfectly centers the content */
+  .wrap { padding: 24px 24px 48px 68px !important; box-sizing: border-box !important; }
 
-  /* Flowchart fills the text boundary width exactly between ruler lines */
-  .flow-desk { display: none; }
-  .flow-mob { display: block !important; width: 100% !important; max-width: 100% !important; height: auto; margin: 24px 0 0 0 !important; }
-  .flow-svg text { font-size: 11.5px; }
+  /* 2. Flowchart Fix: Scales seamlessly to the exact width of the text boundaries */
+  .flow-desk { display: none !important; }
+  .flow-mob { display: block !important; width: 100% !important; max-width: 100% !important; height: auto !important; margin: 24px 0 0 0 !important; }
 
-  /* Grid & Section Adjustments */
+  /* 3. Section Adjustments */
   .info { grid-template-columns: 1fr 1fr; }
-  .cols, .row, .row.flip, .annot { grid-template-columns: 1fr; }
+  .cols, .row, .row.flip, .annot, .tags { grid-template-columns: 1fr; }
   .annot .shot { order: -1; }
   .callouts .lft div::after, .callouts .rgt div::before { display: none; }
 
-  /* Slider & Menus */
+  /* 4. Slider & Menus */
   .slider { height: 235px; width: 53px; }
   .k-scale { transform: scale(1.35); }
   html { --tab-top: 40px; }
 
-  /* Tags & Lists */
+  /* 5. Tags & Lists */
   .tags { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
   .tags .l { white-space: normal !important; column-count: 1 !important; padding-left: 16px !important; }
 }
@@ -332,127 +319,138 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
     <h2 class="c">Simplified User Flow</h2>
     <p class="sec-p">We received 5 documents from the client outlining the different sections and scenarios needed for the platform. Us as a team first outlined the main linear success journey to use as reference to start wireframes. During our project onboarding we were told to create an easy process and to focus in on the main functionality.</p>
     
-    <!-- Desktop Flowchart -->
+   <!-- Desktop Flowchart -->
 <svg class="flow-svg flow-desk" viewBox="0 0 900 360" role="img" aria-label="Simplified User Flow diagram">
-  <defs><marker id="arr-org" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#e79565" stroke-width="2"/></marker>
-  <marker id="arr-grn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#5e856f" stroke-width="2"/></marker></defs>
+  <defs>
+    <marker id="arr-org" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#e79565" stroke-width="2"/></marker>
+    <marker id="arr-grn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#5e856f" stroke-width="2"/></marker>
+  </defs>
   
-  <!-- Lines -->
-  <path class="line l-grn" d="M 160 170 L 175 170" marker-end="url(#arr-grn)"/>
-  <path class="line l-grn" d="M 335 170 L 350 170" marker-end="url(#arr-grn)"/>
-  <path class="line l-grn" d="M 510 170 L 525 170" marker-end="url(#arr-grn)"/>
-  <path class="line l-grn" d="M 605 205 L 605 220" marker-end="url(#arr-grn)"/>
-  <path class="line l-grn" d="M 685 260 L 700 260" marker-end="url(#arr-grn)"/>
-  <path class="line l-grn" d="M 685 240 L 710 240 L 710 190 L 845 190" marker-end="url(#arr-grn)"/>
-  <path class="line l-grn" d="M 685 280 L 710 280 L 710 330 L 845 330" marker-end="url(#arr-grn)"/>
-  <path class="line l-org" d="M 140 135 L 140 110 L 155 110" marker-end="url(#arr-org)"/>
-  <path class="line l-org" d="M 315 55 L 330 55" marker-end="url(#arr-org)"/>
-  <path class="line l-org" d="M 490 55 L 505 55" marker-end="url(#arr-org)"/>
-  <path class="line l-org" d="M 665 55 L 680 55" marker-end="url(#arr-org)"/>
-
-  <!-- Boxes & Text -->
-  <rect class="box b-brn" x="0" y="135" width="160" height="70"/><text x="80" y="170">Login and dashboard</text>
+  <path fill="none" stroke="#5e856f" stroke-width="2.5" d="M 160 170 L 175 170" marker-end="url(#arr-grn)"/>
+  <path fill="none" stroke="#5e856f" stroke-width="2.5" d="M 335 170 L 350 170" marker-end="url(#arr-grn)"/>
+  <path fill="none" stroke="#5e856f" stroke-width="2.5" d="M 510 170 L 525 170" marker-end="url(#arr-grn)"/>
+  <path fill="none" stroke="#5e856f" stroke-width="2.5" d="M 605 205 L 605 220" marker-end="url(#arr-grn)"/>
+  <path fill="none" stroke="#5e856f" stroke-width="2.5" d="M 685 260 L 700 260" marker-end="url(#arr-grn)"/>
+  <path fill="none" stroke="#5e856f" stroke-width="2.5" d="M 685 240 L 710 240 L 710 190 L 845 190" marker-end="url(#arr-grn)"/>
+  <path fill="none" stroke="#5e856f" stroke-width="2.5" d="M 685 280 L 710 280 L 710 330 L 845 330" marker-end="url(#arr-grn)"/>
   
-  <rect class="box b-grn" x="175" y="135" width="160" height="70"/><text x="255" y="170">Create new client</text>
-  <rect class="box b-grn" x="350" y="135" width="160" height="70"/><text x="430" y="162">Select client type:</text><text class="t-sub" x="430" y="178">Individual or Entity</text>
-  <rect class="box b-grn" x="525" y="135" width="160" height="70"/><text x="605" y="170">Capture new client</text>
-  <rect class="box b-grn" x="350" y="225" width="160" height="70"/><text x="430" y="260">Compliance</text>
-  <rect class="box b-grn" x="525" y="225" width="160" height="70"/><text x="605" y="252">Submit for authorisation</text><text class="t-sub" x="605" y="268">and security checks</text>
-  <rect class="box b-grn" x="720" y="180" width="125" height="50"/><text x="782.5" y="205">Success</text>
-  <rect class="box b-grn" x="720" y="290" width="125" height="50"/><text x="782.5" y="315">Fail</text>
+  <path fill="none" stroke="#e79565" stroke-width="2.5" d="M 140 135 L 140 110 L 155 110" marker-end="url(#arr-org)"/>
+  <path fill="none" stroke="#e79565" stroke-width="2.5" d="M 315 55 L 330 55" marker-end="url(#arr-org)"/>
+  <path fill="none" stroke="#e79565" stroke-width="2.5" d="M 490 55 L 505 55" marker-end="url(#arr-org)"/>
+  <path fill="none" stroke="#e79565" stroke-width="2.5" d="M 665 55 L 680 55" marker-end="url(#arr-org)"/>
 
-  <rect class="box b-org" x="155" y="20" width="160" height="70"/><text class="t-brn" x="235" y="55">View client</text>
-  <rect class="box b-org" x="330" y="20" width="160" height="70"/><text class="t-brn" x="410" y="55">Client/Partnership name</text>
-  <rect class="box b-org" x="505" y="20" width="160" height="70"/><text class="t-brn" x="585" y="47">Client/Partnership info</text><text class="t-sub t-brn" x="585" y="63">summary</text>
-  <rect class="box b-org" x="680" y="0" width="165" height="110"/>
-  <text class="t-brn" x="762.5" y="22">View details</text><text class="t-sub t-brn" x="762.5" y="38">Choose one:</text>
-  <circle cx="705" cy="58" r="2" fill="#ac5c41"/><text class="t-l t-brn" x="715" y="58">Call Accounts</text>
-  <circle cx="705" cy="78" r="2" fill="#ac5c41"/><text class="t-l t-brn" x="715" y="78">Investments</text>
-  <circle cx="705" cy="98" r="2" fill="#ac5c41"/><text class="t-l t-brn" x="715" y="98">Transactions</text>
+  <rect x="0" y="135" width="160" height="70" rx="8" fill="#ac5c41"/>
+  <text x="80" y="170" fill="#fff" font-size="13" font-weight="600" text-anchor="middle" dominant-baseline="central">Login and dashboard</text>
+  
+  <rect x="175" y="135" width="160" height="70" rx="8" fill="#5e856f"/>
+  <text x="255" y="170" fill="#fff" font-size="13" font-weight="600" text-anchor="middle" dominant-baseline="central">Create new client</text>
+  <rect x="350" y="135" width="160" height="70" rx="8" fill="#5e856f"/>
+  <text x="430" y="162" fill="#fff" font-size="13" font-weight="600" text-anchor="middle" dominant-baseline="central">Select client type:</text>
+  <text x="430" y="178" fill="#fff" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="central">Individual or Entity</text>
+  <rect x="525" y="135" width="160" height="70" rx="8" fill="#5e856f"/>
+  <text x="605" y="170" fill="#fff" font-size="13" font-weight="600" text-anchor="middle" dominant-baseline="central">Capture new client</text>
+  
+  <rect x="350" y="225" width="160" height="70" rx="8" fill="#5e856f"/>
+  <text x="430" y="260" fill="#fff" font-size="13" font-weight="600" text-anchor="middle" dominant-baseline="central">Compliance</text>
+  <rect x="525" y="225" width="160" height="70" rx="8" fill="#5e856f"/>
+  <text x="605" y="252" fill="#fff" font-size="13" font-weight="600" text-anchor="middle" dominant-baseline="central">Submit for authorisation</text>
+  <text x="605" y="268" fill="#fff" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="central">and security checks</text>
+  
+  <rect x="720" y="180" width="125" height="50" rx="8" fill="#5e856f"/>
+  <text x="782.5" y="205" fill="#fff" font-size="13" font-weight="600" text-anchor="middle" dominant-baseline="central">Success</text>
+  <rect x="720" y="290" width="125" height="50" rx="8" fill="#5e856f"/>
+  <text x="782.5" y="315" fill="#fff" font-size="13" font-weight="600" text-anchor="middle" dominant-baseline="central">Fail</text>
+
+  <rect x="155" y="20" width="160" height="70" rx="8" fill="#e79565"/>
+  <text x="235" y="55" fill="#ac5c41" font-size="13" font-weight="600" text-anchor="middle" dominant-baseline="central">View client</text>
+  <rect x="330" y="20" width="160" height="70" rx="8" fill="#e79565"/>
+  <text x="410" y="55" fill="#ac5c41" font-size="13" font-weight="600" text-anchor="middle" dominant-baseline="central">Client/Partnership name</text>
+  <rect x="505" y="20" width="160" height="70" rx="8" fill="#e79565"/>
+  <text x="585" y="47" fill="#ac5c41" font-size="13" font-weight="600" text-anchor="middle" dominant-baseline="central">Client/Partnership info</text>
+  <text x="585" y="63" fill="#ac5c41" font-size="11" font-weight="400" text-anchor="middle" dominant-baseline="central">summary</text>
+  <rect x="680" y="0" width="165" height="110" rx="8" fill="#e79565"/>
+  <text x="762.5" y="22" fill="#ac5c41" font-size="13" font-weight="600" text-anchor="middle" dominant-baseline="central">View details</text>
+  <text x="762.5" y="38" fill="#ac5c41" font-size="11" font-weight="400" text-decoration="underline" text-anchor="middle" dominant-baseline="central">Choose one:</text>
+  <circle cx="705" cy="58" r="2" fill="#ac5c41"/><text x="715" y="58" fill="#ac5c41" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="central">Call Accounts</text>
+  <circle cx="705" cy="78" r="2" fill="#ac5c41"/><text x="715" y="78" fill="#ac5c41" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="central">Investments</text>
+  <circle cx="705" cy="98" r="2" fill="#ac5c41"/><text x="715" y="98" fill="#ac5c41" font-size="12" font-weight="400" text-anchor="start" dominant-baseline="central">Transactions</text>
 </svg>
 
 <!-- Mobile Flowchart -->
-<svg class="flow-svg flow-mob" viewBox="0 0 264 516" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Simplified User Flow diagram">
+<svg class="flow-svg flow-mob" viewBox="0 0 280 500" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Simplified User Flow diagram">
   <defs>
     <marker id="m-org" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 1L8 5L0 9" fill="none" stroke="#e79565" stroke-width="2"/></marker>
     <marker id="m-grn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 1L8 5L0 9" fill="none" stroke="#5e856f" stroke-width="2"/></marker>
   </defs>
 
-  <!-- Green Connecting Lines -->
-  <path class="line l-grn" d="M 60 26 C 14 26 14 96 38 96" marker-end="url(#m-grn)"/>
-  <path class="line l-grn" d="M 50 122 C 14 122 14 174 38 174" marker-end="url(#m-grn)"/>
-  <path class="line l-grn" d="M 50 216 C 14 216 14 256 38 256" marker-end="url(#m-grn)"/>
-  <path class="line l-grn" d="M 50 286 C 14 286 14 326 38 326" marker-end="url(#m-grn)"/>
-  <path class="line l-grn" d="M 50 356 C 14 356 14 402 38 402" marker-end="url(#m-grn)"/>
-  
-  <!-- Success / Fail Splits -->
-  <path class="line l-grn" d="M 50 440 C 18 440 18 464 38 464" marker-end="url(#m-grn)"/>
-  <path class="line l-grn" d="M 72 440 C 158 440 158 464 140 464" marker-end="url(#m-grn)"/>
+  <path fill="none" stroke="#5e856f" stroke-width="2.5" d="M 60 33 C 10 33 10 105 43 105" marker-end="url(#m-grn)"/>
+  <path fill="none" stroke="#5e856f" stroke-width="2.5" d="M 45 105 C 10 105 10 185 43 185" marker-end="url(#m-grn)"/>
+  <path fill="none" stroke="#5e856f" stroke-width="2.5" d="M 45 185 C 10 185 10 265 43 265" marker-end="url(#m-grn)"/>
+  <path fill="none" stroke="#5e856f" stroke-width="2.5" d="M 45 265 C 10 265 10 325 43 325" marker-end="url(#m-grn)"/>
+  <path fill="none" stroke="#5e856f" stroke-width="2.5" d="M 45 325 C 10 325 10 395 43 395" marker-end="url(#m-grn)"/>
+  <path fill="none" stroke="#5e856f" stroke-width="2.5" d="M 85 430 C 35 430 35 465 43 465" marker-end="url(#m-grn)"/>
+  <path fill="none" stroke="#5e856f" stroke-width="2.5" d="M 85 430 C 180 430 180 465 167 465" marker-end="url(#m-grn)"/>
 
-  <!-- Orange Connecting Lines -->
-  <path class="line l-org" d="M 204 26 C 250 26 250 78 226 78" marker-end="url(#m-org)"/>
-  <path class="line l-org" d="M 214 102 C 250 102 250 154 226 154" marker-end="url(#m-org)"/>
-  <path class="line l-org" d="M 214 196 C 250 196 250 248 226 248" marker-end="url(#m-org)"/>
-  <path class="line l-org" d="M 214 286 C 250 286 250 338 226 338" marker-end="url(#m-org)"/>
+  <path fill="none" stroke="#e79565" stroke-width="2.5" d="M 220 33 C 265 33 265 100 237 100" marker-end="url(#m-org)"/>
+  <path fill="none" stroke="#e79565" stroke-width="2.5" d="M 235 100 C 265 100 265 165 237 165" marker-end="url(#m-org)"/>
+  <path fill="none" stroke="#e79565" stroke-width="2.5" d="M 235 165 C 265 165 265 245 237 245" marker-end="url(#m-org)"/>
+  <path fill="none" stroke="#e79565" stroke-width="2.5" d="M 235 245 C 265 245 265 345 237 345" marker-end="url(#m-org)"/>
 
-  <!-- Top Login Card -->
-  <rect class="box b-brn" x="60" y="0" width="144" height="48"/>
-  <text x="132" y="24">Login and dashboard</text>
+  <rect x="60" y="10" width="160" height="46" rx="6" fill="#ac5c41"/>
+  <text x="140" y="33" fill="#fff" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">Login and dashboard</text>
 
-  <!-- Left Column (Green) -->
-  <rect class="box b-grn" x="40" y="72" width="76" height="48"/>
-  <text x="78" y="88">Create new</text>
-  <text x="78" y="104">client</text>
+  <rect x="45" y="80" width="80" height="50" rx="6" fill="#5e856f"/>
+  <text x="85" y="98" fill="#fff" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">Create new</text>
+  <text x="85" y="112" fill="#fff" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">client</text>
 
-  <rect class="box b-grn" x="40" y="132" width="76" height="84"/>
-  <text x="78" y="152">Select client</text>
-  <text x="78" y="168">type:</text>
-  <text class="t-sub" x="78" y="186">Individual or</text>
-  <text class="t-sub" x="78" y="198">Entity</text>
+  <rect x="45" y="145" width="80" height="80" rx="6" fill="#5e856f"/>
+  <text x="85" y="163" fill="#fff" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">Select client</text>
+  <text x="85" y="177" fill="#fff" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">type:</text>
+  <text x="85" y="193" fill="#fff" font-size="10" font-weight="400" text-anchor="middle" dominant-baseline="central">Individual or</text>
+  <text x="85" y="207" fill="#fff" font-size="10" font-weight="400" text-anchor="middle" dominant-baseline="central">Entity</text>
 
-  <rect class="box b-grn" x="40" y="228" width="76" height="58"/>
-  <text x="78" y="249">Capture new</text>
-  <text x="78" y="265">client</text>
+  <rect x="45" y="240" width="80" height="50" rx="6" fill="#5e856f"/>
+  <text x="85" y="258" fill="#fff" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">Capture new</text>
+  <text x="85" y="272" fill="#fff" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">client</text>
 
-  <rect class="box b-grn" x="40" y="298" width="76" height="58"/>
-  <text x="78" y="327">Compliance</text>
+  <rect x="45" y="305" width="80" height="40" rx="6" fill="#5e856f"/>
+  <text x="85" y="325" fill="#fff" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">Compliance</text>
 
-  <rect class="box b-grn" x="40" y="368" width="76" height="72"/>
-  <text x="78" y="388">Submit for</text>
-  <text x="78" y="404">authorisation</text>
-  <text class="t-sub" x="78" y="420">and security</text>
-  <text class="t-sub" x="78" y="432">checks</text>
+  <rect x="45" y="360" width="80" height="70" rx="6" fill="#5e856f"/>
+  <text x="85" y="378" fill="#fff" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">Submit for</text>
+  <text x="85" y="392" fill="#fff" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">authorisation</text>
+  <text x="85" y="408" fill="#fff" font-size="10" font-weight="400" text-anchor="middle" dominant-baseline="central">and security</text>
+  <text x="85" y="420" fill="#fff" font-size="10" font-weight="400" text-anchor="middle" dominant-baseline="central">checks</text>
 
-  <rect class="box b-brn" x="40" y="448" width="58" height="34"/>
-  <text x="69" y="465">Success</text>
+  <rect x="45" y="445" width="60" height="40" rx="6" fill="#ac5c41"/>
+  <text x="75" y="465" fill="#fff" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">Success</text>
 
-  <rect class="box b-brn" x="104" y="448" width="46" height="34"/>
-  <text x="127" y="465">Fail</text>
+  <rect x="115" y="445" width="50" height="40" rx="6" fill="#ac5c41"/>
+  <text x="140" y="465" fill="#fff" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">Fail</text>
 
-  <!-- Right Column (Orange) -->
-  <rect class="box b-org" x="128" y="56" width="96" height="46"/>
-  <text class="t-brn" x="176" y="79">View client</text>
+  <rect x="140" y="80" width="95" height="40" rx="6" fill="#e79565"/>
+  <text x="187.5" y="100" fill="#ac5c41" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">View client</text>
 
-  <rect class="box b-org" x="128" y="114" width="96" height="82"/>
-  <text class="t-brn" x="176" y="142">Client/</text>
-  <text class="t-brn" x="176" y="158">Partnership</text>
-  <text class="t-brn" x="176" y="174">name</text>
+  <rect x="140" y="135" width="95" height="60" rx="6" fill="#e79565"/>
+  <text x="187.5" y="153" fill="#ac5c41" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">Client/</text>
+  <text x="187.5" y="167" fill="#ac5c41" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">Partnership</text>
+  <text x="187.5" y="181" fill="#ac5c41" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">name</text>
 
-  <rect class="box b-org" x="128" y="208" width="96" height="78"/>
-  <text class="t-brn" x="176" y="232">Client/</text>
-  <text class="t-brn" x="176" y="248">Partnership</text>
-  <text class="t-brn" x="176" y="264">info</text>
-  <text class="t-brn" x="176" y="278">summary</text>
+  <rect x="140" y="210" width="95" height="70" rx="6" fill="#e79565"/>
+  <text x="187.5" y="228" fill="#ac5c41" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">Client/</text>
+  <text x="187.5" y="242" fill="#ac5c41" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">Partnership</text>
+  <text x="187.5" y="256" fill="#ac5c41" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">info</text>
+  <text x="187.5" y="270" fill="#ac5c41" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">summary</text>
 
-  <rect class="box b-org" x="128" y="298" width="96" height="106"/>
-  <text class="t-brn" x="176" y="316">View details</text>
-  <text class="t-sub t-brn" x="176" y="330" text-decoration="underline">Choose one:</text>
-  <circle cx="138" cy="350" r="1.8" fill="#ac5c41"/>
-  <text class="t-l t-brn" x="144" y="350">Call Accounts</text>
-  <circle cx="138" cy="368" r="1.8" fill="#ac5c41"/>
-  <text class="t-l t-brn" x="144" y="368">Investments</text>
-  <circle cx="138" cy="386" r="1.8" fill="#ac5c41"/>
-  <text class="t-l t-brn" x="144" y="386">Transactions</text>
+  <rect x="140" y="295" width="95" height="105" rx="6" fill="#e79565"/>
+  <text x="187.5" y="315" fill="#ac5c41" font-size="12" font-weight="600" text-anchor="middle" dominant-baseline="central">View details</text>
+  <text x="187.5" y="329" fill="#ac5c41" font-size="10" font-weight="400" text-decoration="underline" text-anchor="middle" dominant-baseline="central">Choose one:</text>
+  <circle cx="150" cy="350" r="1.8" fill="#ac5c41"/>
+  <text x="156" y="350" fill="#ac5c41" font-size="10" font-weight="400" text-anchor="start" dominant-baseline="central">Call Accounts</text>
+  <circle cx="150" cy="368" r="1.8" fill="#ac5c41"/>
+  <text x="156" y="368" fill="#ac5c41" font-size="10" font-weight="400" text-anchor="start" dominant-baseline="central">Investments</text>
+  <circle cx="150" cy="386" r="1.8" fill="#ac5c41"/>
+  <text x="156" y="386" fill="#ac5c41" font-size="10" font-weight="400" text-anchor="start" dominant-baseline="central">Transactions</text>
 </svg>
   </section>
 
