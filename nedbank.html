@@ -113,63 +113,26 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
 .knob .moon{fill:currentColor;stroke:none}
 [data-theme="light"] .moon,[data-theme="dark"] .sun{display:none}
 
-  /* Responsive CSS Flowchart */
-.flow-grid {
-  display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: auto auto auto;
-  gap: 24px 20px; margin-top: 32px;
-  --c-brn: #ac5c41; --c-org: #e79565; --c-grn: #5e856f;
-}
-.fg-box {
-  background: var(--c-grn); color: #fff; border-radius: 8px; padding: 14px;
-  font-size: 13px; font-weight: 600; text-align: center; line-height: 1.4;
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
-  position: relative; min-height: 70px; z-index: 2;
-}
-.fg-box.brn { background: var(--c-brn); }
-.fg-box.org { background: var(--c-org); }
-.fg-box ul { margin: 8px 0 0 0; padding-left: 16px; text-align: left; font-weight: 400; width: 100%; font-size: 12px; }
-.fg-sub { font-weight: 400; font-size: 12px; margin-top: 4px; }
+  /* Responsive SVG Flowchart */
+.flow-svg { width: 100%; height: auto; max-width: 900px; margin: 32px auto 0; display: block; overflow: visible; font-family: "Raleway", sans-serif; }
+.flow-svg .box { rx: 8; ry: 8; }
+.flow-svg .b-brn { fill: #ac5c41; }
+.flow-svg .b-org { fill: #e79565; }
+.flow-svg .b-grn { fill: #5e856f; }
+.flow-svg text { fill: #fff; font-size: 13px; font-weight: 600; text-anchor: middle; dominant-baseline: central; }
+.flow-svg .t-sub { font-size: 11px; font-weight: 400; }
+.flow-svg .t-l { text-anchor: start; font-weight: 400; font-size: 12px; }
+.flow-svg .line { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.flow-svg .l-org { stroke: #e79565; }
+.flow-svg .l-grn { stroke: #5e856f; }
+.flow-svg .l-brn { stroke: #ac5c41; }
+.flow-desk { display: block; }
+.flow-mob { display: none; }
 
-/* Grid Map Coordinates */
-.n-log { grid-column: 1; grid-row: 2; }
-.n-v1 { grid-column: 2; grid-row: 1; }
-.n-v2 { grid-column: 3; grid-row: 1; }
-.n-v3 { grid-column: 4; grid-row: 1; }
-.n-v4 { grid-column: 5; grid-row: 1; }
-.n-c1 { grid-column: 2; grid-row: 2; }
-.n-c2 { grid-column: 3; grid-row: 2; }
-.n-c3 { grid-column: 4; grid-row: 2; }
-.n-c4 { grid-column: 3; grid-row: 3; }
-.n-c5 { grid-column: 4; grid-row: 3; }
-.n-c6 { grid-column: 5; grid-row: 3; display: flex; flex-direction: column; gap: 16px; }
-.n-c6 .fg-box { min-height: 48px; }
-
-/* Desktop Arrows (→, ⤴, ⤵) */
-@media (min-width: 821px) {
-  .ar-r::after { content: "→"; position: absolute; right: -18px; top: 50%; transform: translateY(-50%); font-size: 20px; font-weight: bold; }
-  .fg-box.org.ar-r { color: var(--c-org); }
-  .fg-box.grn.ar-r, .fg-box.brn.ar-r { color: var(--c-grn); }
-  
-  .n-log::before { content: "⤴"; position: absolute; right: -16px; top: -26px; color: var(--c-org); font-size: 24px; font-weight: bold; }
-  .n-c3::before { content: "⤵"; position: absolute; left: 50%; bottom: -32px; transform: translateX(-50%); color: var(--c-grn); font-size: 24px; font-weight: bold; }
-}
-
-/* Mobile Stacked Sequence */
 @media (max-width: 820px) {
-  .flow-grid { display: flex; flex-direction: column; gap: 12px; }
-  .n-log, .n-v1, .n-v2, .n-v3, .n-v4, .n-c1, .n-c2, .n-c3, .n-c4, .n-c5, .n-c6 { grid-column: auto; grid-row: auto; }
-  
-  .ar-r::after, .ar-m::after { content: "↓"; position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 16px; top: auto; right: auto; }
-  .fg-box.brn.ar-r { color: var(--c-org); }
-  .ar-m::after { color: var(--c-grn); }
-  
-  .n-log::before, .n-c3::before { display: none; }
-  .n-v1 { margin-top: 32px; }
-  .n-c1 { margin-top: 32px; }
-  
-  /* Adds clear text labels to separate the branches on small screens */
-  .n-v1::before { content: "Branch: View Existing"; display: block; width: 100%; text-align: center; color: var(--c-org); font-size: 12px; text-transform: uppercase; font-weight: 700; position: absolute; top: -26px; }
-  .n-c1::before { content: "Branch: Create New"; display: block; width: 100%; text-align: center; color: var(--c-grn); font-size: 12px; text-transform: uppercase; font-weight: 700; position: absolute; top: -26px; }
+  .flow-desk { display: none; }
+  .flow-mob { display: block; max-width: 264px; }
+  .flow-svg text { font-size: 12px; }
 }
   
 @media (max-width:820px){
@@ -360,36 +323,102 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
   <section>
     <h2 class="c">Simplified User Flow</h2>
     <p class="sec-p">We received 5 documents from the client outlining the different sections and scenarios needed for the platform. Us as a team first outlined the main linear success journey to use as reference to start wireframes. During our project onboarding we were told to create an easy process and to focus in on the main functionality.</p>
-    <div class="flow-grid" role="img" aria-label="User flow diagram">
-      <!-- Starting Point -->
-      <div class="fg-box brn ar-r n-log">Login and dashboard</div>
+    <!-- Desktop Flowchart -->
+<svg class="flow-svg flow-desk" viewBox="0 0 900 360" role="img" aria-label="Simplified User Flow diagram">
+  <defs><marker id="arr-org" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#e79565" stroke-width="2"/></marker>
+  <marker id="arr-grn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#5e856f" stroke-width="2"/></marker></defs>
+  
+  <!-- Lines -->
+  <path class="line l-grn" d="M 160 170 L 175 170" marker-end="url(#arr-grn)"/>
+  <path class="line l-grn" d="M 335 170 L 350 170" marker-end="url(#arr-grn)"/>
+  <path class="line l-grn" d="M 510 170 L 525 170" marker-end="url(#arr-grn)"/>
+  <path class="line l-grn" d="M 605 205 L 605 220" marker-end="url(#arr-grn)"/>
+  <path class="line l-grn" d="M 685 260 L 700 260" marker-end="url(#arr-grn)"/>
+  <path class="line l-grn" d="M 685 240 L 710 240 L 710 190 L 845 190" marker-end="url(#arr-grn)"/>
+  <path class="line l-grn" d="M 685 280 L 710 280 L 710 330 L 845 330" marker-end="url(#arr-grn)"/>
+  <path class="line l-org" d="M 140 135 L 140 110 L 155 110" marker-end="url(#arr-org)"/>
+  <path class="line l-org" d="M 315 55 L 330 55" marker-end="url(#arr-org)"/>
+  <path class="line l-org" d="M 490 55 L 505 55" marker-end="url(#arr-org)"/>
+  <path class="line l-org" d="M 665 55 L 680 55" marker-end="url(#arr-org)"/>
 
-      <!-- View Existing Branch -->
-      <div class="fg-box org ar-r n-v1">View client</div>
-      <div class="fg-box org ar-r n-v2">Client/Partnership name</div>
-      <div class="fg-box org ar-r n-v3">Client/Partnership info summary</div>
-      <div class="fg-box org n-v4">
-        View details
-        <span class="fg-sub">Choose one:</span>
-        <ul>
-          <li>Call Accounts</li>
-          <li>Investments</li>
-          <li>Transactions</li>
-        </ul>
-      </div>
+  <!-- Boxes & Text -->
+  <rect class="box b-brn" x="0" y="135" width="160" height="70"/><text x="80" y="170">Login and dashboard</text>
+  
+  <rect class="box b-grn" x="175" y="135" width="160" height="70"/><text x="255" y="170">Create new client</text>
+  <rect class="box b-grn" x="350" y="135" width="160" height="70"/><text x="430" y="162">Select client type:</text><text class="t-sub" x="430" y="178">Individual or Entity</text>
+  <rect class="box b-grn" x="525" y="135" width="160" height="70"/><text x="605" y="170">Capture new client</text>
+  <rect class="box b-grn" x="350" y="225" width="160" height="70"/><text x="430" y="260">Compliance</text>
+  <rect class="box b-grn" x="525" y="225" width="160" height="70"/><text x="605" y="252">Submit for authorisation</text><text class="t-sub" x="605" y="268">and security checks</text>
+  <rect class="box b-grn" x="720" y="180" width="125" height="50"/><text x="782.5" y="205">Success</text>
+  <rect class="box b-grn" x="720" y="290" width="125" height="50"/><text x="782.5" y="315">Fail</text>
 
-      <!-- Create New Branch -->
-      <div class="fg-box grn ar-r n-c1">Create new client</div>
-      <div class="fg-box grn ar-r n-c2">Select client type:<br><span class="fg-sub">Individual or Entity</span></div>
-      <div class="fg-box grn ar-m n-c3">Capture new client</div>
+  <rect class="box b-org" x="155" y="20" width="160" height="70"/><text x="235" y="55">View client</text>
+  <rect class="box b-org" x="330" y="20" width="160" height="70"/><text x="410" y="55">Client/Partnership name</text>
+  <rect class="box b-org" x="505" y="20" width="160" height="70"/><text x="585" y="47">Client/Partnership info</text><text class="t-sub" x="585" y="63">summary</text>
+  <rect class="box b-org" x="680" y="0" width="165" height="110"/>
+  <text x="762.5" y="22">View details</text><text class="t-sub" x="762.5" y="38">Choose one:</text>
+  <circle cx="705" cy="58" r="2" fill="#fff"/><text class="t-l" x="715" y="58">Call Accounts</text>
+  <circle cx="705" cy="78" r="2" fill="#fff"/><text class="t-l" x="715" y="78">Investments</text>
+  <circle cx="705" cy="98" r="2" fill="#fff"/><text class="t-l" x="715" y="98">Transactions</text>
+</svg>
 
-      <div class="fg-box grn ar-r n-c4">Compliance</div>
-      <div class="fg-box grn ar-r n-c5">Submit for authorisation<br>and security checks</div>
-      <div class="n-c6">
-        <div class="fg-box grn">Success</div>
-        <div class="fg-box grn">Fail</div>
-      </div>
-    </div>
+<!-- Mobile Flowchart -->
+<svg class="flow-svg flow-mob" viewBox="0 0 264 516" role="img" aria-label="Simplified User Flow diagram">
+  <defs><marker id="m-org" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#e79565" stroke-width="2"/></marker>
+  <marker id="m-grn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#5e856f" stroke-width="2"/></marker>
+  <marker id="m-brn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#ac5c41" stroke-width="2"/></marker></defs>
+  
+  <!-- Main Path (Green) -->
+  <path class="line l-grn" d="M 60 52 C 20 52 20 98 42 98" marker-end="url(#m-grn)"/>
+  <path class="line l-grn" d="M 60 122 C 20 122 20 168 42 168" marker-end="url(#m-grn)"/>
+  <path class="line l-grn" d="M 60 216 C 20 216 20 252 42 252" marker-end="url(#m-grn)"/>
+  <path class="line l-grn" d="M 60 286 C 20 286 20 322 42 322" marker-end="url(#m-grn)"/>
+  <path class="line l-grn" d="M 60 356 C 20 356 20 404 42 404" marker-end="url(#m-grn)"/>
+  
+  <!-- Success / Fail Paths -->
+  <path class="line l-grn" d="M 80 440 C 40 440 40 458 52 458" marker-end="url(#m-grn)"/>
+  <path class="line l-grn" d="M 80 440 C 160 440 160 458 142 458" marker-end="url(#m-grn)"/>
+  
+  <!-- Side Path (Orange) -->
+  <path class="line l-org" d="M 180 32 C 220 32 220 78 198 78" marker-end="url(#m-org)"/>
+  <path class="line l-org" d="M 180 112 C 220 112 220 158 198 158" marker-end="url(#m-org)"/>
+  <path class="line l-org" d="M 180 206 C 220 206 220 252 198 252" marker-end="url(#m-org)"/>
+  <path class="line l-org" d="M 180 286 C 220 286 220 338 198 338" marker-end="url(#m-org)"/>
+
+  <!-- Boxes -->
+  <rect class="box b-brn" x="60" y="0" width="160" height="52"/>
+  <rect class="box b-grn" x="42" y="74" width="80" height="48"/>
+  <rect class="box b-grn" x="42" y="132" width="80" height="84"/>
+  <rect class="box b-grn" x="42" y="226" width="80" height="60"/>
+  <rect class="box b-grn" x="42" y="296" width="80" height="60"/>
+  <rect class="box b-grn" x="42" y="366" width="80" height="74"/>
+  <rect class="box b-brn" x="52" y="446" width="65" height="36"/>
+  <rect class="box b-brn" x="127" y="446" width="55" height="36"/>
+
+  <rect class="box b-org" x="132" y="54" width="66" height="48"/>
+  <rect class="box b-org" x="132" y="112" width="66" height="84"/>
+  <rect class="box b-org" x="132" y="206" width="66" height="80"/>
+  <rect class="box b-org" x="132" y="296" width="76" height="106"/>
+
+  <!-- Text -->
+  <text x="140" y="26">Login and dashboard</text>
+  <text x="82" y="90">Create new</text><text x="82" y="106">client</text>
+  <text x="82" y="152">Select client</text><text x="82" y="168">type:</text><text class="t-sub" x="82" y="184">Individual or</text><text class="t-sub" x="82" y="196">Entity</text>
+  <text x="82" y="248">Capture new</text><text x="82" y="264">client</text>
+  <text x="82" y="326">Compliance</text>
+  <text x="82" y="390">Submit for</text><text x="82" y="406">authorisation</text><text class="t-sub" x="82" y="422">and security</text><text class="t-sub" x="82" y="434">checks</text>
+  <text x="84.5" y="464">Success</text>
+  <text x="154.5" y="464">Fail</text>
+
+  <text x="165" y="78">View client</text>
+  <text x="165" y="136">Client/</text><text x="165" y="152">Partnership</text><text x="165" y="168">name</text>
+  <text x="165" y="230">Client/</text><text x="165" y="246">Partnership</text><text x="165" y="262">info</text><text x="165" y="278">summary</text>
+  
+  <text x="170" y="312">View details</text><text class="t-sub" x="170" y="326" text-decoration="underline">Choose one:</text>
+  <text class="t-l" x="138" y="348">Call Accounts</text>
+  <text class="t-l" x="138" y="366">Investments</text>
+  <text class="t-l" x="138" y="384">Transactions</text>
+</svg>
   </section>
 
   <section>
