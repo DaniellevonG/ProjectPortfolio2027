@@ -28,7 +28,7 @@
   /* ---- Your image files: change these paths if yours are named differently ---- */
   --bg-light-img:url("dashboard-background-light.png");
   --bg-dark-img:url("new-dashboard-background-dark.png");
-  --hov-bg:#7a5045; --hov-t:#f6efe9; --tab-h:clamp(44px,3.65vw,62px); --tab-top:2vw;
+  --hov-bg:#7a5045; --hov-t:#f6efe9; --tab-h:clamp(44px,3.65vw,62px); --tab-top:80px;
 
   --page:#f1eee8; --name:#5e2b35; --line:#5e2b35;
   --c1:#835b88; --c1t:#f3b7f3;
@@ -177,10 +177,12 @@ a:focus-visible,.lang:focus-visible{outline:3px solid var(--line);outline-offset
   
   .slider{height:235px;width:53px}
   .k-scale{transform:scale(1.35)}
+  html{--tab-top: 40px}
 }
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+  
   <script>
   (function(){
     try {
