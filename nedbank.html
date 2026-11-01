@@ -103,7 +103,9 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
 .share.open .share-links{opacity:1;visibility:visible;transition:opacity .3s .15s,visibility 0s}
 
 /* Day/night slider: half-ellipse track, small knob */
-.slider{position:fixed;z-index:3;left:0;top:50%;transform:translateY(-50%);height:clamp(280px,36vh,425px);width:auto;aspect-ratio:95/425;touch-action:none;color:var(--line);transition:color .6s}.slider path{fill:none;stroke:currentColor;stroke-width:2}
+.slider{position:fixed;z-index:3;left:0;top:50%;transform:translateY(-50%);height:clamp(280px,36vh,425px);width:auto;aspect-ratio:95/425;touch-action:none;color:var(--line);transition:color .6s}
+  .slider path{fill:none;stroke:currentColor;stroke-width:2}
+.k-scale{transition:transform .3s}
 .knob{cursor:grab;outline:none}
 .knob circle{fill:var(--knob);stroke:currentColor;stroke-width:2;transition:fill .6s}
 .knob:focus-visible circle{stroke-width:3}
@@ -112,7 +114,7 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
 [data-theme="light"] .moon,[data-theme="dark"] .sun{display:none}
 
 @media (max-width:820px){
-  .wrap{padding:0 20px 0 44px}
+  .wrap{padding:24px 72px 48px 76px; box-sizing:border-box}
   .info{grid-template-columns:1fr 1fr}
   .cols,.row,.row.flip,.annot,.tags{grid-template-columns:1fr}
   .annot .shot{order:-1}
@@ -122,7 +124,8 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
   .box+.box::after{left:calc(50% - 5px);top:-9px;border:5px solid transparent;border-top:7px solid var(--pill);border-bottom:0}
   .box.m+.box.m::before{border-left-color:var(--main)}.box.m+.box.m::after{border-top-color:var(--main);border-left-color:transparent}
   .end .box::before{display:none}
-  .slider{height:220px}
+  .slider{height:235px;width:53px}
+  .k-scale{transform:scale(1.35)}
   html{--tab-top:16px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
@@ -157,13 +160,16 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
   </div>
 </div>
 
-<svg class="slider" viewBox="0 0 90 400" role="group" aria-label="Colour theme">
-  <path id="track" d="M0,2 A72,198 0 0 1 0,398"/>
-  <path id="hit" d="M0,2 A72,198 0 0 1 0,398" style="stroke:transparent;stroke-width:34;cursor:pointer"/>
+<!-- Day / night slider: click or drag the knob along the curve -->
+<svg class="slider" viewBox="0 0 95 425" role="group" aria-label="Colour theme">
+  <path id="track" d="M2,2 A73,210.5 0 0 1 2,423" vector-effect="non-scaling-stroke"/>
+  <path id="hit" d="M2,2 A73,210.5 0 0 1 2,423" style="stroke:transparent;stroke-width:40;cursor:pointer"/>
   <g class="knob" id="knob" tabindex="0" role="switch" aria-checked="false" aria-label="Dark mode">
-    <circle r="11"/>
-    <g class="sun" transform="scale(.7)"><circle class="ico" r="4"/><path class="ico" d="M0-8v-3M0 8v3M-8 0h-3M8 0h3M-5.7-5.7l-2-2M5.7 5.7l2 2M-5.7 5.7l-2 2M5.7-5.7l2-2"/></g>
-    <path class="moon" transform="scale(.7)" d="M4-8A8.5 8.5 0 1 0 8 4 7 7 0 0 1 4-8z"/>
+    <g class="k-scale">
+      <circle r="20" vector-effect="non-scaling-stroke"/>
+      <g class="sun" transform="scale(1.3)"><circle class="ico" r="4" vector-effect="non-scaling-stroke"/><path class="ico" d="M0-8v-3M0 8v3M-8 0h-3M8 0h3M-5.7-5.7l-2-2M5.7 5.7l2 2M-5.7 5.7l-2 2M5.7-5.7l2-2" vector-effect="non-scaling-stroke"/></g>
+      <path class="moon" transform="scale(1.3)" d="M4-8A8.5 8.5 0 1 0 8 4 7 7 0 0 1 4-8z" vector-effect="non-scaling-stroke"/>
+    </g>
   </g>
 </svg>
 
@@ -296,24 +302,49 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
 
 <script>
 (function(){
-  var root=document.documentElement,track=document.getElementById('track'),knob=document.getElementById('knob'),
-      hit=document.getElementById('hit'),svg=document.querySelector('.slider'),L=track.getTotalLength(),raf=null;
-  function tForY(y){var b=0,bd=1e9;for(var i=0;i<=400;i++){var v=i/400,p=track.getPointAtLength(v*L),d=Math.abs(p.y-y);if(d<bd){bd=d;b=v}}return b}
-  var POS={light:tForY(108),dark:tForY(292)},t=POS.light;
-  function place(v){t=v;var p=track.getPointAtLength(v*L);knob.setAttribute('transform','translate('+p.x+','+p.y+')')}
-  function animate(to){cancelAnimationFrame(raf);var from=t,s=null;
-    if(matchMedia('(prefers-reduced-motion: reduce)').matches){place(to);return}
-    (function step(ts){if(!s)s=ts;var k=Math.min((ts-s)/550,1),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;place(from+(to-from)*e);if(k<1)raf=requestAnimationFrame(step)})(performance.now())}
-  function setTheme(m){root.setAttribute('data-theme',m);knob.setAttribute('aria-checked',m==='dark');animate(POS[m]);try{localStorage.setItem('theme',m)}catch(e){}}
+  var root=document.documentElement, track=document.getElementById('track'),
+      knob=document.getElementById('knob'), hit=document.getElementById('hit'),
+      svg=document.querySelector('.slider'), L=track.getTotalLength(), raf=null;
+
+  function tForY(y){var best=0,bd=1e9;for(var i=0;i<=425;i++){var v=i/425,p=track.getPointAtLength(v*L),d=Math.abs(p.y-y);if(d<bd){bd=d;best=v}}return best}
+  var POS={light:tForY(114),dark:tForY(310)}, t=POS.light;
+
+  function place(v){t=v;var p=track.getPointAtLength(v*L);knob.setAttribute('transform','translate('+p.x+','+p.y+')');}
+  function animate(to){
+    cancelAnimationFrame(raf);
+    var from=t,start=null,dur=550;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){place(to);return;}
+    (function step(ts){
+      if(!start)start=ts;
+      var k=Math.min((ts-start)/dur,1),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+      place(from+(to-from)*e);
+      if(k<1)raf=requestAnimationFrame(step);
+    })(performance.now());
+  }
+  function setTheme(mode){
+    root.setAttribute('data-theme',mode);
+    knob.setAttribute('aria-checked',mode==='dark');
+    animate(POS[mode]);
+    try{localStorage.setItem('theme',mode)}catch(e){}
+  }
   function toggle(){setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark')}
+
   var saved=null;try{saved=localStorage.getItem('theme')}catch(e){}
-  var init=saved||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  var init=saved||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
   root.setAttribute('data-theme',init);knob.setAttribute('aria-checked',init==='dark');place(POS[init]);
-  var drag=false,moved=false;
-  function tFromPointer(e){var r=svg.getBoundingClientRect(),y=(e.clientY-r.top)/r.height*400,b=t,bd=1e9;for(var i=0;i<=80;i++){var v=i/80,p=track.getPointAtLength(v*L),d=Math.abs(p.y-y);if(d<bd){bd=d;b=v}}return Math.max(.08,Math.min(.92,b))}
-  knob.addEventListener('pointerdown',function(e){drag=true;moved=false;knob.setPointerCapture(e.pointerId);cancelAnimationFrame(raf)});
-  knob.addEventListener('pointermove',function(e){if(!drag)return;moved=true;var v=tFromPointer(e);place(v);root.setAttribute('data-theme',v>.5?'dark':'light')});
-  knob.addEventListener('pointerup',function(){drag=false;if(moved){setTheme(t>.5?'dark':'light')}else{toggle()}});
+
+  var dragging=false,moved=false;
+  function tFromPointer(e){
+    var r=svg.getBoundingClientRect(),y=(e.clientY-r.top)/r.height*425,best=t,bd=1e9;
+    for(var i=0;i<=80;i++){var v=i/80,p=track.getPointAtLength(v*L),d=Math.abs(p.y-y);if(d<bd){bd=d;best=v}}
+    return Math.max(.08,Math.min(.92,best));
+  }
+  knob.addEventListener('pointerdown',function(e){dragging=true;moved=false;knob.setPointerCapture(e.pointerId);cancelAnimationFrame(raf);knob.style.cursor='grabbing'});
+  knob.addEventListener('pointermove',function(e){if(!dragging)return;moved=true;var v=tFromPointer(e);place(v);root.setAttribute('data-theme',v>.5?'dark':'light')});
+  knob.addEventListener('pointerup',function(){
+    dragging=false;knob.style.cursor='';
+    if(moved){setTheme(t>.5?'dark':'light')}else{toggle()}
+  });
   hit.addEventListener('click',toggle);
   knob.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
 })();
