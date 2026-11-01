@@ -132,8 +132,8 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
 
 @media (max-width: 820px) {
   .flow-desk { display: none; }
-  /* Removing the max-width allows the SVG to fluidly fill the screen boundaries */
-  .flow-mob { display: block; max-width: none; } 
+  /* Set width to 100% and height to auto for proportional scaling on mobile */
+  .flow-mob { display: block; width: 100%; height: auto; max-width: none; }
   .flow-svg text { font-size: 12px; }
 }
 
@@ -372,7 +372,7 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
 </svg>
 
 <!-- Mobile Flowchart -->
-<svg class="flow-svg flow-mob" viewBox="0 0 264 516" role="img" aria-label="Simplified User Flow diagram">
+<svg class="flow-svg flow-mob" viewBox="0 0 264 516" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Simplified User Flow diagram">
   <defs><marker id="m-org" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#e79565" stroke-width="2"/></marker>
   <marker id="m-grn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#5e856f" stroke-width="2"/></marker>
   <marker id="m-brn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#ac5c41" stroke-width="2"/></marker></defs>
