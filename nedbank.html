@@ -144,7 +144,7 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
 @media (max-width:820px){
   /* SVG Flowchart Fix: Force width to 100% and override any max-width */
   .flow-desk { display: none; }
-  .flow-mob { display: block !important; width: 100% !important; max-width: 100% !important; height: auto; } 
+.flow-mob { display: block !important; width: 100% !important; max-width: 264px !important; height: auto; margin: 0 auto !important; } 
   .flow-svg text { font-size: 12px; }
 
   /* General Mobile Layout */
@@ -382,63 +382,66 @@ hr{border:0;border-top:1.5px solid var(--rule);margin:36px 0}
 </svg>
 
 <!-- Mobile Flowchart -->
-<svg class="flow-svg flow-mob" viewBox="0 0 310 550" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Simplified User Flow diagram">
+<svg class="flow-svg flow-mob" viewBox="0 0 264 516" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Simplified User Flow diagram">
   <defs>
-    <marker id="m-org" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#e79565" stroke-width="2"/></marker>
-    <marker id="m-grn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#5e856f" stroke-width="2"/></marker>
+    <marker id="m-org" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#e79565" stroke-width="2"/></marker>
+    <marker id="m-grn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 1L9 5L0 9" fill="none" stroke="#5e856f" stroke-width="2"/></marker>
   </defs>
-
-  <!-- Green Lines -->
-  <path class="line l-grn" d="M 155 50 C 10 50 10 105 30 105" marker-end="url(#m-grn)"/>
-  <path class="line l-grn" d="M 30 105 C -5 105 -5 190 30 190" marker-end="url(#m-grn)"/>
-  <path class="line l-grn" d="M 30 190 C -5 190 -5 275 30 275" marker-end="url(#m-grn)"/>
-  <path class="line l-grn" d="M 30 275 C -5 275 -5 345 30 345" marker-end="url(#m-grn)"/>
-  <path class="line l-grn" d="M 30 345 C -5 345 -5 425 30 425" marker-end="url(#m-grn)"/>
-  <path class="line l-grn" d="M 85 470 C 45 470 45 510 60 510" marker-end="url(#m-grn)"/>
-  <path class="line l-grn" d="M 85 470 C 200 470 200 510 160 510" marker-end="url(#m-grn)"/>
-
-  <!-- Orange Lines -->
-  <path class="line l-org" d="M 155 50 C 300 50 300 100 280 100" marker-end="url(#m-org)"/>
-  <path class="line l-org" d="M 280 100 C 315 100 315 170 280 170" marker-end="url(#m-org)"/>
-  <path class="line l-org" d="M 280 170 C 315 170 315 250 280 250" marker-end="url(#m-org)"/>
-  <path class="line l-org" d="M 280 250 C 315 250 315 350 280 350" marker-end="url(#m-org)"/>
+  
+  <!-- Main Path (Green) -->
+  <path class="line l-grn" d="M 60 52 C 20 52 20 98 42 98" marker-end="url(#m-grn)"/>
+  <path class="line l-grn" d="M 60 122 C 20 122 20 168 42 168" marker-end="url(#m-grn)"/>
+  <path class="line l-grn" d="M 60 216 C 20 216 20 252 42 252" marker-end="url(#m-grn)"/>
+  <path class="line l-grn" d="M 60 286 C 20 286 20 322 42 322" marker-end="url(#m-grn)"/>
+  <path class="line l-grn" d="M 60 356 C 20 356 20 404 42 404" marker-end="url(#m-grn)"/>
+  
+  <!-- Success / Fail Paths -->
+  <path class="line l-grn" d="M 80 440 C 40 440 40 458 52 458" marker-end="url(#m-grn)"/>
+  <path class="line l-grn" d="M 80 440 C 160 440 160 458 142 458" marker-end="url(#m-grn)"/>
+  
+  <!-- Side Path (Orange) -->
+  <path class="line l-org" d="M 180 32 C 220 32 220 78 198 78" marker-end="url(#m-org)"/>
+  <path class="line l-org" d="M 180 112 C 220 112 220 158 198 158" marker-end="url(#m-org)"/>
+  <path class="line l-org" d="M 180 206 C 220 206 220 252 198 252" marker-end="url(#m-org)"/>
+  <path class="line l-org" d="M 180 286 C 220 286 220 338 198 338" marker-end="url(#m-org)"/>
 
   <!-- Boxes -->
-  <rect class="box b-brn" x="65" y="0" width="180" height="50"/>
+  <rect class="box b-brn" x="60" y="0" width="160" height="52"/>
+  
+  <rect class="box b-grn" x="42" y="74" width="80" height="48"/>
+  <rect class="box b-grn" x="42" y="132" width="80" height="84"/>
+  <rect class="box b-grn" x="42" y="226" width="80" height="60"/>
+  <rect class="box b-grn" x="42" y="296" width="80" height="60"/>
+  <rect class="box b-grn" x="42" y="366" width="80" height="74"/>
+  
+  <rect class="box b-brn" x="52" y="446" width="65" height="36"/>
+  <rect class="box b-brn" x="127" y="446" width="55" height="36"/>
 
-  <rect class="box b-grn" x="30" y="80" width="110" height="50"/>
-  <rect class="box b-grn" x="30" y="150" width="110" height="80"/>
-  <rect class="box b-grn" x="30" y="250" width="110" height="50"/>
-  <rect class="box b-grn" x="30" y="320" width="110" height="50"/>
-  <rect class="box b-grn" x="30" y="390" width="110" height="80"/>
-
-  <rect class="box b-brn" x="60" y="490" width="80" height="40"/>
-  <rect class="box b-brn" x="160" y="490" width="80" height="40"/>
-
-  <rect class="box b-org" x="170" y="80" width="110" height="40"/>
-  <rect class="box b-org" x="170" y="140" width="110" height="60"/>
-  <rect class="box b-org" x="170" y="220" width="110" height="60"/>
-  <rect class="box b-org" x="170" y="300" width="110" height="110"/>
+  <rect class="box b-org" x="132" y="54" width="66" height="48"/>
+  <rect class="box b-org" x="132" y="112" width="66" height="84"/>
+  <rect class="box b-org" x="132" y="206" width="66" height="80"/>
+  <rect class="box b-org" x="132" y="296" width="76" height="106"/>
 
   <!-- Text -->
-  <text x="155" y="25">Login and dashboard</text>
-
-  <text x="85" y="98">Create new</text><text x="85" y="114">client</text>
-  <text x="85" y="170">Select client</text><text x="85" y="186">type:</text><text class="t-sub" x="85" y="202">Individual or</text><text class="t-sub" x="85" y="214">Entity</text>
-  <text x="85" y="268">Capture new</text><text x="85" y="284">client</text>
-  <text x="85" y="345">Compliance</text>
-  <text x="85" y="410">Submit for</text><text x="85" y="426">authorisation</text><text class="t-sub" x="85" y="442">and security</text><text class="t-sub" x="85" y="454">checks</text>
-  <text x="100" y="510">Success</text>
-  <text x="200" y="510">Fail</text>
-
-  <text class="t-brn" x="225" y="100">View client</text>
-  <text class="t-brn" x="225" y="156">Client/</text><text class="t-brn" x="225" y="172">Partnership</text><text class="t-brn" x="225" y="188">name</text>
-  <text class="t-brn" x="225" y="236">Client/</text><text class="t-brn" x="225" y="252">Partnership</text><text class="t-brn" x="225" y="268">info</text><text class="t-brn" x="225" y="284">summary</text>
+  <text x="140" y="26">Login and dashboard</text>
   
-  <text class="t-brn" x="225" y="318">View details</text><text class="t-sub t-brn" x="225" y="334" text-decoration="underline">Choose one:</text>
-  <text class="t-l t-brn" x="180" y="358">Call Accounts</text>
-  <text class="t-l t-brn" x="180" y="378">Investments</text>
-  <text class="t-l t-brn" x="180" y="398">Transactions</text>
+  <text x="82" y="90">Create new</text><text x="82" y="106">client</text>
+  <text x="82" y="152">Select client</text><text x="82" y="168">type:</text><text class="t-sub" x="82" y="184">Individual or</text><text class="t-sub" x="82" y="196">Entity</text>
+  <text x="82" y="248">Capture new</text><text x="82" y="264">client</text>
+  <text x="82" y="326">Compliance</text>
+  <text x="82" y="390">Submit for</text><text x="82" y="406">authorisation</text><text class="t-sub" x="82" y="422">and security</text><text class="t-sub" x="82" y="434">checks</text>
+  
+  <text x="84.5" y="464">Success</text>
+  <text x="154.5" y="464">Fail</text>
+
+  <text class="t-brn" x="165" y="78">View client</text>
+  <text class="t-brn" x="165" y="136">Client/</text><text class="t-brn" x="165" y="152">Partnership</text><text class="t-brn" x="165" y="168">name</text>
+  <text class="t-brn" x="165" y="230">Client/</text><text class="t-brn" x="165" y="246">Partnership</text><text class="t-brn" x="165" y="262">info</text><text class="t-brn" x="165" y="278">summary</text>
+  
+  <text class="t-brn" x="170" y="312">View details</text><text class="t-sub t-brn" x="170" y="326" text-decoration="underline">Choose one:</text>
+  <text class="t-l t-brn" x="138" y="348">Call Accounts</text>
+  <text class="t-l t-brn" x="138" y="366">Investments</text>
+  <text class="t-l t-brn" x="138" y="384">Transactions</text>
 </svg>
   </section>
 
